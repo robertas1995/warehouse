@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+<header th:fragment="header">
+    <div class="nav">
+        <a class="active" th:href="@{/home}">RobWarehouse</a>
+        <span>
+        <a class="left" th:href="@{/customer/all}">All customers</a>
+        </span>
+        <a class="right" th:href="@{/createNewGoods}" >New Product</a>
+    </div>
+</header>
+
+</body>
+</html>

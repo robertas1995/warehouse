@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<body>
+
+<div class="container">
+    <form th:action="'/editProduct/'+${id}"
+          method="post">
+        <div>
+            <label>
+                <input type="text" th:text="*{editProduct.getName()}" name="productName" placeholder="product Name"/>
+            </label>
+        </div>
+        <div>
+            <label>
+                <input type="number" th:text="*{editProduct.getPrice()}" name="productPrice" placeholder="Price"/>
+            </label>
+        </div>
+        <div>
+            <label>
+                <textarea th:text="*{editProduct.getDescription()}" name="productDescription" placeholder="About Goods"></textarea>
+            </label>
+        </div>
+        <div>
+            <button type="submit">Confirm</button>
+        </div>
+    </form>
+</div>
+
+
+</body>
+</html>

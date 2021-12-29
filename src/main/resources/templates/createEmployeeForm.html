@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<!--<head th:replace="/fragments/head :: head"></head>-->
+<body>
+
+<!--<div th:replace="/fragments/header :: header"></div>-->
+
+<!--<div class="container" th:class="align-center">-->
+
+<h2>Register new Client</h2>
+
+<form action="#"
+      th:action="@{/employee/add}"
+      th:object="${employee}"
+      method="post">
+    <div>
+        <label>
+
+            <input type="text" th:field="*{name}" placeholder="Name"/>
+        </label>
+    </div>
+    <div>
+        <label>
+
+            <input type="text" th:field="*{surname}" placeholder="Surname"/>
+        </label>
+    </div>
+    <div>
+        <label>
+
+            <input type="text" th:field="*{address}" placeholder="Address"/>
+        </label>
+    </div>
+
+    <div>
+        <label>
+
+            <input type="text" th:field="*{username}" placeholder="Username"/>
+        </label>
+    </div>
+    <div>
+        <label>
+
+            <input type="text" th:field="*{role}" placeholder="Role"/>
+        </label>
+    </div>
+    <div>
+        <button class="green-btn" type="submit">Register</button>
+    </div>
+</form>
+</div>
+
+<!--<footer th:replace="/fragments/footer :: footer"></footer>-->
+
+</body>
+</html>

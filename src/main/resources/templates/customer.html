@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Customer</title>
+</head>
+<body>
+
+<div class="container" style="text-align: center">
+    <div class="customer">
+        <h2 th:text="${customer.name}">Name</h2>
+        <p th:text="${customer.lastname}">Surname</p>
+        <p th:text="${customer.address}">Address</p>
+        <p th:text="${customer.tel}">Phone</p>
+        <p th:text="${customer.email}">Email</p>
+
+    </div>
+</div>
+
+</body>
+</html>

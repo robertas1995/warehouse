@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>new order</title>
+</head>
+<body>
+
+<div class="order">
+    <div th:each="orderitem:${order.items}">
+        <div style="display: inline-block" th:text="${orderitem.product.name}">
+        </div>
+        <div th:text="${orderitem.quantity}">
+        </div>
+    </div>
+
+</div>
+<div th:each="item:${items}" class="items">
+    <form th:action="@{/createNewOrder}" method="post">
+        <div>
+            <div style="display: inline-block">
+                <input type="text" name="itemid" th:value="${item.id}">
+            </div>
+            <div style="display: inline-block">
+                <p th:text="${item.name}"></p>
+            </div>
+            <div style="display: inline-block">
+                <p th:text="${item.price}"></p>
+            </div>
+            <div style="display: inline-block">
+                <input name="quantity" type="number">
+            </div>
+        </div>
+
+        <div>
+            <button type="submit">Add item</button>
+        </div>
+    </form>
+
+</div>
+
+</body>
+</html>

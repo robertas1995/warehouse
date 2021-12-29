@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Customers List</title>
+</head>
+<body>
+
+<div th:fragment="customers(customers)">
+
+    <div class="cutomer" th:each="customer : ${customers}">
+        <h2><a th:href="@{'/customer/' + ${customer.id}}" th:text=""</h2>
+    </div>
+</div>
+</body>
+</html>
