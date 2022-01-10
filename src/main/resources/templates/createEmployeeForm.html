@@ -2,17 +2,18 @@
 <html lang="en"
       xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<!--<head th:replace="/fragments/head :: head"></head>-->
+<link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
+<link rel="stylesheet" type="text/css" th:href="@{/css/main.css}">
 <body>
 
-<!--<div th:replace="/fragments/header :: header"></div>-->
 
-<!--<div class="container" th:class="align-center">-->
+<div th:replace="/fragments/header :: header"></div>
+<div class="employee">
 
-<h2>Register new Client</h2>
+<h2>Register new Employee</h2>
 
 <form action="#"
-      th:action="@{/employee/add}"
+      th:action="@{/employees/add}"
       th:object="${employee}"
       method="post">
     <div>
@@ -52,7 +53,7 @@
 </form>
 </div>
 
-<!--<footer th:replace="/fragments/footer :: footer"></footer>-->
+<footer th:replace="/fragments/footer :: footer"></footer>
 
 </body>
 </html>

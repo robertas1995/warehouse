@@ -1,6 +1,8 @@
 package com.example.robwarehouse.controller;
 
 import com.example.robwarehouse.model.*;
+import com.example.robwarehouse.repository.CustomerRepo;
+import com.example.robwarehouse.repository.EmployeeRepo;
 import com.example.robwarehouse.repository.ProductRepo;
 import com.example.robwarehouse.repository.OrderItemRepo;
 import com.example.robwarehouse.service.OrderSevice;
@@ -10,7 +12,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 
 @Data
 @Slf4j
@@ -20,8 +26,8 @@ public class OrderController {
     private final OrderSevice orderSevice;
     private final OrderItemRepo orderItemRepo;
     private final ProductRepo productRepo;
-
-
+    private final CustomerRepo customerRepo;
+    private final EmployeeRepo employeeRepo;
 
     @GetMapping ("/createNewOrder")
     public String createNewOrder(Model model){
@@ -29,33 +35,38 @@ public class OrderController {
         model.addAttribute("order", order);
         List<Product> items = productRepo.findAll();
         model.addAttribute("items",items);
+        List<Employee> employees = employeeRepo.findAll();
+        model.addAttribute("employees", employees);
+        List<Customer> customers = customerRepo.findAll();
+        model.addAttribute("customer",customers);
+
+
         return "orderForm";
 
     }
-    @PostMapping("/createNewOrder")
-         String addItem(
-                 Model model,
-                 @RequestParam String itemid,
-                 @RequestParam Integer quantity,
-                 @ModelAttribute(name = "order") Order order) {
-        Long itemIdReal = Long.parseLong(itemid);
-        order.getItems().add(new OrderItem(order, productRepo.getById(itemIdReal),quantity));
-        model.addAttribute("order",order);
-        List<Product>items = productRepo.findAll();
-        model.addAttribute("items", items);
-        return "orderForm";
+    @PostMapping ("/createNewOrder")
+    String addItem(@Valid @ModelAttribute Order order){
+
+        return orderSevice.addItem(order);
     }
 
-//    @PostMapping("/createNewOrder")
-//    private String createNewOrder(
-//            @Valid @ModelAttribute Order order,
-//            @ModelAttribute(name = "itemList") List<OrderItem> orderItems,
-//            Customer customer
-//            Page<Item> items
-//    ){
-//         orderSevice.createNewOrder(order,customer,orderItems);
-//        return "orderSuccess";
-//    }
 
 
-}
+
+
+
+
+
+    @GetMapping("/createdOrder")
+    public String createdOrder(Long id, Model model){
+        Optional<Order> newOrder = this.orderSevice.getById(id);
+        if (newOrder.isPresent()){
+            Order order = newOrder.get();
+            model.addAttribute("order",order);
+        }
+        return "singleOrder";
+    }
+
+
+    }
+

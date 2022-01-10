@@ -17,18 +17,18 @@ public class CustomerServiceImpl implements CustomerService{
 
 
     @Override
-    public Customer createCustomer(Customer createdCustomer){
-//        Customer customer = new Customer();
-//        customer.setName(createdCustomer.getName());
-//        customer.setAddress(createdCustomer.getAddress());
-//        customer.setEmail(createdCustomer.getEmail());
-//        customer.setTel(createdCustomer.getTel());
-//        customer.setLastname(createdCustomer.getLastname());
+    public String createCustomer(Customer createdCustomer){
+        Customer customer = new Customer();
+        customer.setName(createdCustomer.getName());
+        customer.setAddress(createdCustomer.getAddress());
+        customer.setEmail(createdCustomer.getEmail());
+        customer.setTel(createdCustomer.getTel());
+        customer.setLastname(createdCustomer.getLastname());
         customerRepo.save(createdCustomer);
 
 
 
-        return createdCustomer;
+        return "redirect:/customer";
     }
 
     @Override
@@ -41,8 +41,8 @@ public class CustomerServiceImpl implements CustomerService{
         return customerRepo.findAll();
     }
     @Override
-    public void editCustomer(Long id, String customerName, String customerLastname, String customerAddress, String customerEmail, String customerTel){
-        var customer = customerRepo.findById(id).orElseThrow(()-> new EntityNotFoundException("customer not found"));
+    public void editCustomer(Long customerId, String customerName, String customerLastname, String customerAddress, String customerEmail, String customerTel){
+        var customer = customerRepo.findById(customerId).orElseThrow(()-> new EntityNotFoundException("customer not found"));
         customer.setName(customerName);
         customer.setLastname(customerLastname);
         customer.setAddress(customerAddress);

@@ -14,9 +14,11 @@ public interface ProductService {
 
     void delete(Product product);
 
-    void  editGoods(Long goodsId, String goodsName, Double goodsPrice, String goodsDescription);
+
+    void editGoods(Long productId, String productName, Double productPrice, String productDescription);
 
     Optional<Product> getById(Long id);
 
     Collection<Product> getAll();
+
 }

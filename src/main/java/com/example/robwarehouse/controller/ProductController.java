@@ -1,12 +1,12 @@
 package com.example.robwarehouse.controller;
 
-import com.example.robwarehouse.model.Employee;
 import com.example.robwarehouse.model.Product;
 import com.example.robwarehouse.repository.ProductRepo;
 import com.example.robwarehouse.service.ProductService;
 import lombok.Data;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -15,6 +15,7 @@ import java.util.Optional;
 
 @Controller
 @Data
+@RequestMapping("/products")
 public class ProductController {
 
     private final ProductService productService;
@@ -26,9 +27,9 @@ public class ProductController {
     public String createNewProduct(Model model){
 
         Product product = new Product();
-        model.addAttribute("goods", product);
+        model.addAttribute("product", product);
 
-        return "goodsForm";
+        return "ProductsForm";
 
     }
 
@@ -51,23 +52,29 @@ public class ProductController {
         model.addAttribute("productId", id);
         var product = productRepo.getById(id);
         model.addAttribute("editProduct", product);
-        return "/editProduct";
+        System.out.println("get VEikia");
+        return "editProduct";
     }
     @PostMapping("/editProduct/{id}")
-    public String editProduct(@PathVariable Long id, @RequestParam(name = "productName") String productName,
+    public String editProduct(@PathVariable Long id,
+                              @RequestParam(name = "productName") String productName,
                               @RequestParam(name = "productPrice") Double productPrice,
-                              @RequestParam(name = "productDescription") String productDescpirtion){
-        productService.editGoods(id, productName, productPrice, productDescpirtion);
-        return "redirect:/product/" + id;
+                              @RequestParam(name = "productDescription") String productDescription){
+        productService.editGoods(id,productName,productPrice,productDescription);
+        System.out.println(productPrice);
+
+
+     return "redirect:/products/product/"+id;
     }
 
-    @GetMapping("allProducts")
+
+    @GetMapping("/list")
     public String getAll(Model model){
 
-        Collection<Product> productCollection = this.productService.getAll();
-        model.addAttribute("product",productCollection);
+        Collection<Product> products = this.productService.getAll();
+        model.addAttribute("products",products);
 
-        return "allProducts";
+        return "productsList";
     }
 
     @GetMapping("/deleteProduct/{id}")
@@ -75,7 +82,7 @@ public class ProductController {
         Optional<Product> optionalProduct = this.productService.getById(id);
         Product product = optionalProduct.get();
         this.productService.delete(product);
-        return "redirect:/product";
+        return "redirect:/products/list";
     }
 
 

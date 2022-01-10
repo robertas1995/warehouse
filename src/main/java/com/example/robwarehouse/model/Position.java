@@ -13,12 +13,14 @@ public class Position {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
-    private Integer id;
+    private Long id;
 
     @OneToOne
+   // @JoinColumn(name = "location_id",referencedColumnName = "id")
     private Location location;
 
     @OneToOne
+    //@JoinColumn(name = "product_id",referencedColumnName = "id")
     private Product product;
 
     @Column(name = "quantity")
@@ -27,3 +29,6 @@ public class Position {
 
 
 }
+
+
+

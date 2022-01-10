@@ -2,19 +2,22 @@
 <html lang="en"
       xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
 <body>
+<div th:replace="/fragments/header :: header"></div>
+
 
 <div class="container">
-    <form th:action="'/editProduct/'+${id}"
+    <form th:action="'/products/editProduct/'+${id}"
           method="post">
         <div>
             <label>
-                <input type="text" th:text="*{editProduct.getName()}" name="productName" placeholder="product Name"/>
+                <textarea  th:text="*{editProduct.getName()}" name="productName" placeholder="product Name"></textarea>
             </label>
         </div>
         <div>
             <label>
-                <input type="number" th:text="*{editProduct.getPrice()}" name="productPrice" placeholder="Price"/>
+                <textarea  th:text="*{editProduct.getPrice()}" name="productPrice" placeholder="Price"></textarea>
             </label>
         </div>
         <div>
@@ -28,6 +31,6 @@
     </form>
 </div>
 
-
+<footer th:replace="/fragments/footer :: footer"></footer>
 </body>
 </html>

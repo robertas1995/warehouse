@@ -8,8 +8,8 @@
 
 <div th:fragment="customers(customers)">
 
-    <div class="cutomer" th:each="customer : ${customers}">
-        <h2><a th:href="@{'/customer/' + ${customer.id}}" th:text=""</h2>
+    <div class="customer" th:each="customer : ${customers}">
+        <h2><a th:href="@{'/customer/' + ${customer.id}}" th:text="${customer.name}"</h2>
     </div>
 </div>
 </body>

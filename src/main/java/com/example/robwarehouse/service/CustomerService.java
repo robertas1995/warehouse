@@ -10,7 +10,7 @@ import java.util.Optional;
 public interface CustomerService {
 
 
-    Customer createCustomer(Customer customer);
+    String createCustomer(Customer customer);
 
     Optional<Customer> getById(Long id);
 

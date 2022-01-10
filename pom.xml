@@ -15,6 +15,10 @@
     <description>RobWarehouse</description>
     <properties>
         <java.version>11</java.version>
+            <bootstrap.version>4.0.0-2</bootstrap.version>
+            <webjars-locator.version>0.30</webjars-locator.version>
+            <lombok.version>1.18.2</lombok.version>
+            <commonmark.version>0.13.1</commonmark.version>
     </properties>
     <dependencies>
         <dependency>
@@ -26,8 +30,14 @@
             <artifactId>spring-boot-starter-thymeleaf</artifactId>
         </dependency>
         <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>bootstrap</artifactId>
+            <version>4.0.0-2</version>
+        </dependency>
+        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
+            <version>2.1.5.RELEASE</version>
         </dependency>
         <dependency>
             <groupId>org.thymeleaf.extras</groupId>

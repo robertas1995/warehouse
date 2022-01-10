@@ -3,41 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <title>new order</title>
+    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
+    <div th:replace="/fragments/header :: header"></div>
 </head>
 <body>
 
-<div class="order">
-    <div th:each="orderitem:${order.items}">
-        <div style="display: inline-block" th:text="${orderitem.product.name}">
-        </div>
-        <div th:text="${orderitem.quantity}">
-        </div>
-    </div>
+<form action="#"
+      th:action="@{/createNewOrder}"
+      th:object="${order}"
+      method="put">
 
+
+<div class="col-lg-3" th:object="${customer}">
+    <select class="form-control" id="customerOrder" name="testOrder">
+        <option value="">Select Customer</option>
+        <option th:each="customer : ${customers}"
+                th:value="${customer.name}"
+                th:text="${customer.name}+'  '+${customer.lastname}"></option>
+    </select>
 </div>
-<div th:each="item:${items}" class="items">
-    <form th:action="@{/createNewOrder}" method="post">
-        <div>
-            <div style="display: inline-block">
-                <input type="text" name="itemid" th:value="${item.id}">
-            </div>
-            <div style="display: inline-block">
-                <p th:text="${item.name}"></p>
-            </div>
-            <div style="display: inline-block">
-                <p th:text="${item.price}"></p>
-            </div>
-            <div style="display: inline-block">
-                <input name="quantity" type="number">
-            </div>
-        </div>
+<div class="col-lg-3" th:object="${employee}">
+    <select class="form-control" id="employeeOrder" name="testOrder">
+        <option value="">Select Employee</option>
+        <option th:each="employee : ${employees}"
+                th:value="${employee.name}"
+                th:text="${employee.name}+'  '+${employee.surname}"></option>
+    </select>
 
+<div  class="items">
+        <table>
+            <thead>
+            <tr>
+                <th> Product Id</th>
+                <th> Product price</th>
+                <th> Name </th>
+                <th> Quantity </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="item : ${items}">
+                <td><span th:text="${item.id}"> ID</span> </td>
+                <td><span th:text="${item.price}">Price</span></td>
+                <td><span th:text="${item.name}">Name</span></td>
+                <td><input name="quantity" type="number"></td>
+            </tr>
+            </tbody>
+        </table>
         <div>
             <button type="submit">Add item</button>
         </div>
-    </form>
+
 
 </div>
-
+</form>
 </body>
 </html>

@@ -25,7 +25,7 @@ public class SupplierController {
         Supplier supplier = new Supplier();
         model.addAttribute("supplier", supplier);
 
-        return "createNewSupplier";
+        return "positionForm";
     }
 
     @PostMapping("/createNewSupplier")

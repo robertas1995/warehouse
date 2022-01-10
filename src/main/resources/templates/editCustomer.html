@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit customer</title>
+    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
+</head>
+<body>
+<div th:replace="/fragments/header :: header"></div>
+
+
+<div class="container">
+    <form th:action="'/customer/editCustomer/'+${id}"
+          method="post">
+        <div>
+            <label>
+                <input  th:value="*{editCustomer.getName()}" name="customerName" placeholder="customer name"/>
+            </label>
+        </div>
+        <div>
+            <label>
+                <input  th:value="*{editCustomer.getLastname()}" name="customerLastname" placeholder="customer lastname"/>
+            </label>
+        </div>
+        <div>
+            <label>
+                <input  th:value="*{editCustomer.getAddress()}" name="customerAddress" placeholder="customer address"/>
+            </label>
+        </div>
+        <div>
+            <label>
+                <input  th:value="*{editCustomer.getEmail()}" name="customerEmail" placeholder="customer email"/>
+            </label>
+        </div>
+        <div>
+            <label>
+                <input  th:value="*{editCustomer.getTel()}" name="customerTel" placeholder="customer Tel"/>
+            </label>
+        </div>
+        <div>
+            <button type="submit">Confirm</button>
+        </div>
+    </form>
+</div>
+<footer th:replace="/fragments/footer :: footer"></footer>
+</body>
+</html>

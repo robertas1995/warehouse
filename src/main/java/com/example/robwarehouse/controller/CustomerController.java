@@ -16,6 +16,7 @@ import java.util.Optional;
 @Slf4j
 @Data
 @Controller
+@RequestMapping("/customer")
 
 public class CustomerController {
 
@@ -25,7 +26,6 @@ public class CustomerController {
     @GetMapping("/add")
     public String createCustomer(Model model){
         model.addAttribute("customer", new Customer());
-      log.error("can't get tamplete");
         return "createCustomerForm";
     }
 
@@ -35,7 +35,7 @@ public class CustomerController {
 
          customerService.createCustomer(customer);
 
-         return "redirect:/customer/" + customer.getId();
+         return "redirect:customer/" + customer.getId();
 
     }
 
@@ -50,11 +50,12 @@ public class CustomerController {
         return "customer";
     }
 
-    @GetMapping("/customer/all")
+
+    @GetMapping("/list")
     public String displayAllCustomer(Model model) {
 
         Collection<Customer>customers = this.customerService.getAll();
-        model.addAttribute("customer", customers);
+        model.addAttribute("customers", customers);
 
         return "customerList";
     }
@@ -65,10 +66,10 @@ public class CustomerController {
         model.addAttribute("customerId", id);
         var customer =  customerRepo.getById(id);
         model.addAttribute("editCustomer", customer);
-        return "/editCustomer";
+        return "editCustomer";
     }
 
-    @PostMapping("editCustomer/{id}")
+    @PostMapping("/editCustomer/{id}")
     public String editCustomer(@PathVariable Long id,
                                @RequestParam(name = "customerName") String customerName,
                                @RequestParam(name = "customerAddress") String customerAddress,
@@ -76,7 +77,7 @@ public class CustomerController {
                                @RequestParam(name = "customerLastname") String customerLastname,
                                @RequestParam(name = "customerTel") String customerTel){
         customerService.editCustomer(id, customerName, customerLastname, customerAddress, customerEmail, customerTel);
-        return "redirect:/customer" + id;
+        return "redirect:/customer/customer/" + id;
     }
 
     @GetMapping("/deleteCustomer/{id}")
@@ -85,7 +86,7 @@ public class CustomerController {
         Customer customer = optionalCustomer.get();
         this.customerService.delete(customer);
 
-        return "redirect:/customer";
+        return "redirect:/customer/list";
     }
 
 

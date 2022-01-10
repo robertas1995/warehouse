@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<!--<head th:replace="/fragments/head :: head"></head>-->
+<body>
+
+<!--<div th:replace="/fragments/header :: header"></div>-->
+
+<!--<div class="container" th:class="align-center">-->
+
+<h2>Register new Position</h2>
+
+<form action="#"
+      th:action="@{/positions/createNewPosition}"
+      th:object="${position}"
+      method="post">
+    <div class="col-lg-3" th:object="${position}">
+        <select class="form-control" id="location" name="testOrder">
+            <option value="">Select Location</option>
+            <option th:each="location : ${locations}"
+                    th:value="${location.id}"
+                    th:text="${location.locationName}+' '+${location.id}"></option>
+        </select>
+        <select class="form-control" id="product" name="testOrder">
+            <option value="">Select Product</option>
+            <option th:each="product : ${products}"
+                    th:value="${product.id}"
+                    th:text="${product.id}+ ' '+${product.name}"></option>
+    </div>
+    <div class="col-lg-3" th:object="${position}">
+
+
+    <div>
+        <label>
+
+            <input type="number" th:field="*{quantity}" placeholder="Quantity"/>
+        </label>
+    </div>
+    <div>
+        <label>
+
+            <input type="number" th:field="*{product.id}" placeholder="Product ID"/>
+        </label>
+    </div>
+    <div>
+        <label>
+
+            <input type="number" th:field="*{location.id}" placeholder="Location ID"/>
+        </label>
+    </div>
+    <div>
+        <button class="green-btn" type="submit">Register</button>
+    </div>
+</form>
+</div>
+
+<!--<footer th:replace="/fragments/footer :: footer"></footer>-->
+
+</body>
+</html>

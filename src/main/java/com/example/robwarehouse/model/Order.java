@@ -1,5 +1,6 @@
 package com.example.robwarehouse.model;
 
+import com.example.robwarehouse.dto.PlaceOrderDto;
 import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -19,6 +20,7 @@ public class Order {
     private Long id;
 
     @OneToOne
+    @JoinColumn(name = "id", referencedColumnName = "id",nullable = false,updatable = false)
     private Customer customer;
 
     @Enumerated(EnumType.STRING)
@@ -29,9 +31,24 @@ public class Order {
     private LocalDate creationDate;
 
     @OneToOne
+    @JoinColumn(name = "id", referencedColumnName = "id",nullable = false,updatable = false)
     private Employee employee;
+//TODO manau cia kazkas negerai
+    @OneToMany(mappedBy = "order",cascade = CascadeType.REMOVE,fetch = FetchType.EAGER )
+    private List<OrderItem> orderItems;
 
-    @OneToMany
-    private List<OrderItem> items = new ArrayList<>();
+    @Column(name = "total_price")
+    private Double totalPrice;
+
+    public Order(){
+
+    }
+
+    public Order(PlaceOrderDto orderDto, Customer customer){
+        this.totalPrice = orderDto.getTotalPrice();
+        this.customer = customer;
+    }
+
+
 
 }

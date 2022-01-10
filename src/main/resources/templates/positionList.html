@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CustomerList</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/main.css}">
+    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
+</head>
+<body>
+<div th:replace="/fragments/header :: header"></div>
+<footer th:replace="/fragments/footer :: footer"></footer>
+
+<table>
+    <thead>
+    <tr>
+        <th class="tbody_th">  ID</th>
+        <th class="tbody_th">  Location</th>
+        <th class="tbody_th"> ProductName </th>
+        <th class="tbody_th"> Quantity </th>
+
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="positions : ${positions}">
+        <td class="tbody_td"><span th:text="${positions.id}"> ID</span> </td>
+        <td class="tbody_td"><span th:text="${positions.location.getLocationName}">Location</span></td>
+        <td class="tbody_td"><span th:text="${positions.product.getName}">ProductName</span></td>
+        <td class="tbody_td"><span th:text="${positions.quantity}">Quantity</span></td>
+        <td><a th:href="@{'/positions/delete/{id}'(id=${positions.id})}">Delete</a></td>
+        <td><a th:href="@{'/positions/editPosition/{id}'(id=${positions.id})}">Delete</a></td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>

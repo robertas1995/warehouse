@@ -28,7 +28,7 @@ public class EmployeeSeriveImpl implements EmployeeSerivice {
         employee.setRole(createdEmployee.getRole());
         employeeRepo.save(employee);
 
-        return  " redirect:/createEmployeeForm";
+        return  "home";
 
     }
 

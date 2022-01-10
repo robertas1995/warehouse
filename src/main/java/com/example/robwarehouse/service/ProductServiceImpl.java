@@ -35,11 +35,11 @@ public class ProductServiceImpl implements ProductService {
 
 
     @Override
-        public void  editGoods(Long goodsId, String goodsName, Double goodsPrice, String goodsDescription){
-            var goods = productRepo.findById(goodsId).orElseThrow(()-> new EntityNotFoundException("goods not found"));
-            goods.setName(goodsName);
-            goods.setPrice(goodsPrice);
-            goods.setDescription(goodsDescription);
+    public void editGoods(Long productId, String productName, Double productPrice, String productDescription){
+            var goods = productRepo.findById(productId).orElseThrow(()-> new EntityNotFoundException("goods not found"));
+            goods.setName(productName);
+            goods.setPrice(productPrice);
+            goods.setDescription(productDescription);
             productRepo.save(goods);
         }
 

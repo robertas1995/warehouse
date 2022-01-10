@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CustomerList</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/main.css}">
+    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
+</head>
+<body>
+<div th:replace="/fragments/header :: header"></div>
+
+<div class="products" style="text-align: center">
+    <a href="add" class="btn btn-success"> <i class="fa fa-arrow-circle-o-left"></i>New employee</a>
+
+    <table>
+        <thead>
+        <tr>
+            <th class="tbody_th">  ID</th>
+            <th class="tbody_th">  Name</th>
+            <th class="tbody_th"> Lastname </th>
+            <th class="tbody_th"> Address </th>
+            <th class="tbody_th"> Username </th>
+            <th class="tbody_th"> Role </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="employees : ${employees}">
+            <td class="tbody_td"><span th:text="${employees.id}"> ID</span> </td>
+            <td class="tbody_td"><span th:text="${employees.name}">Name</span></td>
+            <td class="tbody_td"><span th:text="${employees.surname}">Lastname</span></td>
+            <td class="tbody_td"><span th:text="${employees.address}">Address</span></td>
+            <td class="tbody_td"><span th:text="${employees.username}">Email</span></td>
+            <td class="tbody_td"><span th:text="${employees.role}">Phone</span></td>
+            <td><a th:href="@{'/employees/deleteEmployee/{id}'(id=${employees.id})}" class="btn btn-danger">Delete</a></td>
+            <td><a th:href="@{'/employees/edit/{id}'(id=${employees.id})}" class="btn btn-primary">Edit</a></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<footer th:replace="/fragments/footer :: footer"></footer>
+</body>
+</html>>

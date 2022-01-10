@@ -1,0 +1,21 @@
+table{
+    text-align: center;
+    display:block;
+    border: 2px solid black;
+    border-collapse: collapse;
+    border-spacing: 4px;
+    margin-left: 15%;
+    margin-right: 15%;
+    margin-top: 5%;
+}
+
+.table_body, .tbody_td, .tbody_th
+{ border: 1px solid black; }
+.table_body  { border-collapse: collapse; }
+
+.btn{
+    margin-top: 5%;
+}
+.employee{
+    text-align: center;
+}

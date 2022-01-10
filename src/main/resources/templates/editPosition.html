@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Position</title>
+    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
+</head>
+<body>
+<div th:replace="/fragments/header :: header"></div>
+
+
+<div class="container">
+    <form th:action="'/positions/editPosition'+${id}"
+          method="post">
+        <div>
+            <label>
+                <input type="text" th:text="*{editPosition.location.locationName}" name="locationName" placeholder="Location Name"/>
+            </label>
+        </div>
+        <div>
+            <label>
+                <input type="text" th:text="*{editPosition.product.name}" name="productName" placeholder="Product Name"/>
+            </label>
+        </div>
+        <div>
+            <label>
+                <input type="text" th:text="*{editPosition.quantity}" name="positionQuantity" placeholder="Quantity"/>
+            </label>
+        </div>
+        <div>
+            <button type="submit">Confirm</button>
+        </div>
+    </form>
+</div>
+<footer th:replace="/fragments/footer :: footer"></footer>
+</body>
+</html>

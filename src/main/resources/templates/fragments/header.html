@@ -2,16 +2,29 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
 </head>
 <body>
 <header th:fragment="header">
-    <div class="nav">
-        <a class="active" th:href="@{/home}">RobWarehouse</a>
-        <span>
-        <a class="left" th:href="@{/customer/all}">All customers</a>
-        </span>
-        <a class="right" th:href="@{/createNewGoods}" >New Product</a>
-    </div>
+    <nav th:fragment="navbar" class="navbar navbar-expand-md bg-dark navbar-dark">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" th:href="@{/}">RobWarehouse</a>
+            </div>
+            <ul class="nav navbar-nav">
+
+                <li><a class="nav-link" th:href="@{/customer/list}">Customer</a></li>
+
+                <li><a class="nav-link" th:href="@{/positions/positionList}">Position List</a></li>
+
+                <li><a class="nav-link" th:href="@{/createNewOrder}">Creat order</a></li>
+
+                <li><a class="nav-link" th:href="@{/products/list}">Products</a></li>
+
+                <li><a class="nav-link" th:href="@{/employees/allEmployees}">Employee</a></li>
+            </ul>
+        </div>
+    </nav>
 </header>
 
 </body>
