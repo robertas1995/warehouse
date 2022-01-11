@@ -37,23 +37,23 @@ public class EmployeeController {
         return employeeSerivice.createEmployee(employee);
     }
 
-    @GetMapping("/edit/{id}")
+    @GetMapping("/editEmployee/{id}")
     public String editEmployees(@PathVariable Long id, Model model){
         model.addAttribute("employeeId", id);
         var employee = employeeRepo.getById(id);
         model.addAttribute("editEmployee", employee);
         return "editEmployee";
     }
-    @PostMapping("/edit/{id}")
+    @PostMapping("/editEmployee/{id}")
     public String editEmployees(@PathVariable Long id,
                                 @RequestParam(name = "employeeName") String employeeName,
                                 @RequestParam(name = "employeeSurname") String employeeSurname,
-                                @RequestParam(name = "employeeAddress") Role employeeAddress,
+                                @RequestParam(name = "employeeAddress") String employeeAddress,
                                 @RequestParam(name = "employeeUsername") String employeeUsername,
-                                @RequestParam(name = "employeeRole") String employeeRole){
+                                @RequestParam(name = "employeeRole") Role employeeRole){
         employeeSerivice.editEmployee(id,employeeName,employeeSurname,employeeAddress,employeeUsername,employeeRole);
-        return "redirect:/employees/employee/" + id;
 
+        return "redirect:/employees/employee/" + id;
     }
     @GetMapping("/allEmployees")
     public String getAll(Model model){

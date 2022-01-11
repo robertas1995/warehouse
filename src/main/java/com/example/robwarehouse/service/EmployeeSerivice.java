@@ -16,7 +16,7 @@ public interface EmployeeSerivice {
     String createEmployee(Employee createdEmployee);
 
 
-    void editEmployee(Long id, String employeeAddress, String employeeName, Role employeeRole, String employeeSurname, String employeeUsername);
+    void editEmployee(Long employeeId, String employeeName, String employeeSurname, String employeeAddress, String employeeUsername, Role employeeRole);
 
     Collection<Employee> getAll();
 

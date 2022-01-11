@@ -32,7 +32,7 @@
             <td class="tbody_td"><span th:text="${employees.username}">Email</span></td>
             <td class="tbody_td"><span th:text="${employees.role}">Phone</span></td>
             <td><a th:href="@{'/employees/deleteEmployee/{id}'(id=${employees.id})}" class="btn btn-danger">Delete</a></td>
-            <td><a th:href="@{'/employees/edit/{id}'(id=${employees.id})}" class="btn btn-primary">Edit</a></td>
+            <td><a th:href="@{'/employees/editEmployee/{id}'(id=${employees.id})}" class="btn btn-primary">Edit</a></td>
         </tr>
         </tbody>
     </table>

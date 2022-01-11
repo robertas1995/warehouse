@@ -26,20 +26,20 @@ public class EmployeeSeriveImpl implements EmployeeSerivice {
         employee.setAddress(createdEmployee.getAddress());
         employee.setUsername(createdEmployee.getUsername());
         employee.setRole(createdEmployee.getRole());
-        employeeRepo.save(employee);
+        employeeRepo.save(createdEmployee);
 
-        return  "home";
+        return  "redirect:/employee";
 
     }
 
     @Override
-    public  void editEmployee(Long id, String employeeAddress, String employeeName, Role employeeRole, String employeeSurname, String employeeUsername){
-        var employee = employeeRepo.findById(id).orElseThrow(()-> new EntityNotFoundException("emplyee not found"));
-        employee.setAddress(employeeAddress);
-        employee.setName(employeeName);
-        employee.setSurname(employeeSurname);
-        employee.setUsername(employeeUsername);
-        employee.setRole(employeeRole);
+    public  void editEmployee(Long employeeId, String employeeName,String employeeSurname,String employeeAddress,String employeeUsername, Role employeeRole){
+        var employee = employeeRepo.findById(employeeId).orElseThrow(()-> new EntityNotFoundException("emplyee not found"));
+       employee.setSurname(employeeName);
+       employee.setSurname(employeeSurname);
+       employee.setAddress(employeeAddress);
+       employee.setUsername(employeeUsername);
+       employee.setRole(employeeRole);
         employeeRepo.save(employee);
     }
 
