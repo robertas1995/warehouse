@@ -14,17 +14,17 @@
           method="post">
         <div>
             <label>
-                <input type="text" th:text="*{editPosition.location.locationName}" name="locationName" placeholder="Location Name"/>
+                <input type="text" th:value="*{editPosition.location.locationName}" name="locationName" placeholder="Location Name"/>
             </label>
         </div>
         <div>
             <label>
-                <input type="text" th:text="*{editPosition.product.name}" name="productName" placeholder="Product Name"/>
+                <input type="text" th:value="*{editPosition.product.name}" name="productName" placeholder="Product Name"/>
             </label>
         </div>
         <div>
             <label>
-                <input type="text" th:text="*{editPosition.quantity}" name="positionQuantity" placeholder="Quantity"/>
+                <input type="text" th:value="*{editPosition.quantity}" name="positionQuantity" placeholder="Quantity"/>
             </label>
         </div>
         <div>

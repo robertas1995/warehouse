@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Location</title>
+    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
+</head>
+<body>
+<div th:replace="/fragments/header :: header"></div>
+
+
+<div class="container" style="text-align: center">
+    <div class="location">
+        <h2 th:text="${location.locationName}">Name</h2>
+        <p th:text="${location.id}">Price</p>
+
+
+    </div>
+</div>
+<footer th:replace="/fragments/footer :: footer"></footer>
+</body>
+</html>

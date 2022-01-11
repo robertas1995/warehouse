@@ -20,7 +20,7 @@ public class LocationServiceImpl implements LocationService{
         Location newLoca = new Location();
         newLoca.setLocationName(newLocation.getLocationName());
         locationRepo.save(newLoca);
-     return "/location";
+     return "redirect:/location/all";
     }
 
     @Override

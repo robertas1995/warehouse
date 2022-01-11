@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<body>
+
+<div class="container">
+    <form th:action="@{'/location/createNewLocation'}"
+          th:object="${location}"
+          method="post">
+        <div>
+            <label>
+                <input type="text" th:field="*{locationName}" placeholder="product Name"/>
+            </label>
+        </div>
+        <div>
+            <button type="submit">Confirm</button>
+        </div>
+    </form>
+</div>
+
+
+</body>
+</html>

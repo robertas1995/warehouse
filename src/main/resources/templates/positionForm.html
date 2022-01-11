@@ -20,13 +20,14 @@
             <option value="">Select Location</option>
             <option th:each="location : ${locations}"
                     th:value="${location.id}"
-                    th:text="${location.locationName}+' '+${location.id}"></option>
+                    th:valuetype="${location.locationName}+' '+${location.id}"></option>
         </select>
         <select class="form-control" id="product" name="testOrder">
             <option value="">Select Product</option>
             <option th:each="product : ${products}"
                     th:value="${product.id}"
-                    th:text="${product.id}+ ' '+${product.name}"></option>
+                    th:valuetype="${product.id}+ ' '+${product.name}"></option>
+        </select>
     </div>
     <div class="col-lg-3" th:object="${position}">
 

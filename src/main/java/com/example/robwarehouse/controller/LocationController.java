@@ -1,11 +1,9 @@
 package com.example.robwarehouse.controller;
 
-import com.example.robwarehouse.model.Customer;
 import com.example.robwarehouse.model.Location;
 import com.example.robwarehouse.model.Product;
 import com.example.robwarehouse.repository.LocationRepo;
 import com.example.robwarehouse.service.LocationService;
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -29,7 +27,7 @@ public class LocationController {
     public String createNewLocation(Model model){
         Location location = new Location();
         model.addAttribute("location", location);
-        return "location";
+        return "locationForm";
     }
     @PostMapping("/createNewLocation")
     public String createNewLocation(@Valid @ModelAttribute Location location, Product product ){
@@ -37,12 +35,18 @@ public class LocationController {
         return locationService.createNewLocation(location);
     }
 
-    @GetMapping("/Edit{id}")
+    @GetMapping("/edit/{id}")
     public String editLocation(@PathVariable Long id, Model model){
         model.addAttribute("locationId", id);
         var location = locationRepo.getById(id);
         model.addAttribute("editLocation", location);
-        return "/location" +id;
+        return "editLocation";
+    }
+    @PostMapping("/edit/{id}")
+    public String editLocation(@PathVariable Long id,
+                               @RequestParam(name = "locationName") String locationName){
+        locationService.editLocation(id,locationName);
+        return "redirect:/location/" + id;
     }
 
     @GetMapping("/delete/{id}")
@@ -50,7 +54,7 @@ public class LocationController {
         Optional<Location> optionalLocation = this.locationService.getById(id);
         Location location = optionalLocation.get();
         this.locationService.delete(location);
-        return "redirect:/location";
+        return "redirect:/location/all";
     }
     @GetMapping("/{id}")
     public String getLocation(@PathVariable Long id, Model model){

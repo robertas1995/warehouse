@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CustomerList</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/main.css}">
+    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
+</head>
+<body>
+<div th:replace="/fragments/header :: header"></div>
+
+<div class="products" style="text-align: center">
+    <a href="createNewLocation" class="btn btn-success"> <i class="fa fa-arrow-circle-o-left"></i>New Location</a>
+
+    <table>
+        <thead>
+        <tr>
+            <th class="tbody_th">  ID</th>
+            <th class="tbody_th">  Name</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="location : ${location}">
+            <td class="tbody_td"><span th:text="${location.id}"> ID</span> </td>
+            <td class="tbody_td"><span th:text="${location.locationName}">Name</span></td>
+            <td><a th:href="@{'/location/delete/{id}'(id=${location.id})}" class="btn btn-danger">Delete</a></td>
+            <td><a th:href="@{'/location/edit/{id}'(id=${location.id})}" class="btn btn-primary">Edit</a></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<footer th:replace="/fragments/footer :: footer"></footer>
+</body>
+</html>
