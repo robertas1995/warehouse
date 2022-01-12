@@ -9,7 +9,6 @@ import java.util.Optional;
 @Repository
 public interface CustomerRepo extends JpaRepository<Customer, Long> {
 
-
     @Override
     Optional<Customer> findById(Long cLong);
 }

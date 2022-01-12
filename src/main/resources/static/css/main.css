@@ -1,12 +1,12 @@
 table{
     text-align: center;
-    display:block;
     border: 2px solid black;
     border-collapse: collapse;
     border-spacing: 4px;
     margin-left: 15%;
     margin-right: 15%;
     margin-top: 5%;
+    width: 70%;
 }
 
 .table_body, .tbody_td, .tbody_th
@@ -18,4 +18,11 @@ table{
 }
 .employee{
     text-align: center;
+}
+.form-control{
+
+    width:0px;
+}
+footer{
+    margin-top: 200px;
 }

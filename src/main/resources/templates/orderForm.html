@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>new order</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/main.css}">
     <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
     <div th:replace="/fragments/header :: header"></div>
 </head>
@@ -14,16 +15,16 @@
       method="put">
 
 
-<div class="col-lg-3" th:object="${customer}">
-    <select class="form-control" id="customerOrder" name="testOrder">
+<div class="col-lg-3" th:object="${customers}">
+    <select class="form-control" id="customerOrder" name="customers">
         <option value="">Select Customer</option>
-        <option th:each="customer : ${customers}"
-                th:value="${customer.name}"
-                th:text="${customer.name}+'  '+${customer.lastname}"></option>
+        <option th:each="customers : ${customers}"
+                th:value="${customers.name}"
+                th:text="${customers.name}+'  '+${customers.lastname}"></option>
     </select>
 </div>
-<div class="col-lg-3" th:object="${employee}">
-    <select class="form-control" id="employeeOrder" name="testOrder">
+<div class="col-lg-3" th:object="${employees}">
+    <select class="form-control" id="employeeOrder" name="employees">
         <option value="">Select Employee</option>
         <option th:each="employee : ${employees}"
                 th:value="${employee.name}"

@@ -2,6 +2,7 @@
 <html lang="en"
       xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<link rel="stylesheet" type="text/css" th:href="@{/css/main.css}">
 <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
 <body>
 <div th:replace="/fragments/header :: header"></div>
@@ -12,17 +13,17 @@
           method="post">
         <div>
             <label>
-                <textarea  th:text="*{editProduct.getName()}" name="productName" placeholder="product Name"></textarea>
+                <input  th:value="*{editProduct.getName()}" name="productName" placeholder="product Name"/>
             </label>
         </div>
         <div>
             <label>
-                <textarea  th:text="*{editProduct.getPrice()}" name="productPrice" placeholder="Price"></textarea>
+                <input  th:value="*{editProduct.getPrice()}" name="productPrice" placeholder="Price"/>
             </label>
         </div>
         <div>
             <label>
-                <textarea th:text="*{editProduct.getDescription()}" name="productDescription" placeholder="About Goods"></textarea>
+                <input th:value="*{editProduct.getDescription()}" name="productDescription" placeholder="About Goods"/>
             </label>
         </div>
         <div>

@@ -32,6 +32,7 @@ public class LocationController {
     @PostMapping("/createNewLocation")
     public String createNewLocation(@Valid @ModelAttribute Location location, Product product ){
 
+        //TODO fix GetBYID
         return locationService.createNewLocation(location);
     }
 
@@ -51,6 +52,7 @@ public class LocationController {
 
     @GetMapping("/delete/{id}")
     public String deleteLocation(@PathVariable Long id){
+       //TODO move to service
         Optional<Location> optionalLocation = this.locationService.getById(id);
         Location location = optionalLocation.get();
         this.locationService.delete(location);
@@ -59,12 +61,15 @@ public class LocationController {
     @GetMapping("/{id}")
     public String getLocation(@PathVariable Long id, Model model){
         Optional<Location> optionalLocation = this.locationService.getById(id);
-        Location location = optionalLocation.get();
-        model.addAttribute("location", location);
+        if (optionalLocation.isPresent()){
+            Location location = optionalLocation.get();
+            model.addAttribute("location", location);
+        }
         return "location";
     }
     @GetMapping("/all")
     public String getAll(Model model){
+       //TODO make pagination
         Collection<Location> locationCollection = this.locationService.getAll();
         model.addAttribute("location", locationCollection);
 

@@ -12,12 +12,14 @@ import java.util.Optional;
 public interface PositionService {
     Optional<Position> getById(Long id);
 
-
     String createNewPosition(Position newPosition);
 
-    void editPosition(Long id, Location positionLocation, Product positionProduct, Integer positionQuantyti);
+    String editPosition(Long id, Position editPosition);
 
     Collection<Position> getAll();
 
     void delete(Position position);
+
+
+
 }

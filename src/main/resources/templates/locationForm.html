@@ -2,6 +2,8 @@
 <html lang="en"
       xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<link rel="stylesheet" type="text/css" th:href="@{/css/main.css}">
+<link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
 <body>
 
 <div class="container">
@@ -10,7 +12,7 @@
           method="post">
         <div>
             <label>
-                <input type="text" th:field="*{locationName}" placeholder="product Name"/>
+                <input type="text" th:field="*{locationName}" placeholder="location Name"/>
             </label>
         </div>
         <div>

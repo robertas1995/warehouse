@@ -17,44 +17,36 @@ import java.util.Optional;
 @Data
 @Controller
 @RequestMapping("/customer")
-
 public class CustomerController {
 
     private final CustomerService customerService;
-    private final CustomerRepo customerRepo;
 
     @GetMapping("/add")
-    public String createCustomer(Model model){
+    public String createCustomer(Model model) {
         model.addAttribute("customer", new Customer());
         return "createCustomerForm";
     }
 
     @PostMapping("/add")
-    public String createCustomer(@Valid @ModelAttribute Customer customer){
-
-
-         customerService.createCustomer(customer);
-
-         return "redirect:customer/" + customer.getId();
-
+    public String createCustomer(@Valid @ModelAttribute Customer customer) {
+        customerService.createCustomer(customer);
+        return "redirect:customer/" + customer.getId();
     }
 
     @GetMapping("/customer/{id}")
-    public String getCustomer(@PathVariable Long id, Model model){
+    public String getCustomer(@PathVariable Long id, Model model) {
         Optional<Customer> optionalCustomer = this.customerService.getById(id);
-        if (optionalCustomer.isPresent()){
+        if (optionalCustomer.isPresent()) {
             Customer customer = optionalCustomer.get();
             model.addAttribute("customer", customer);
-
         }
         return "customer";
     }
 
-
     @GetMapping("/list")
     public String displayAllCustomer(Model model) {
 
-        Collection<Customer>customers = this.customerService.getAll();
+        Collection<Customer> customers = this.customerService.getAll();
         model.addAttribute("customers", customers);
 
         return "customerList";
@@ -62,10 +54,12 @@ public class CustomerController {
 
 
     @GetMapping("/editCustomer/{id}")
-    public String editCustomer(@PathVariable Long id, Model model){
+    public String editCustomer(@PathVariable Long id, Model model) {
         model.addAttribute("customerId", id);
-        var customer =  customerRepo.getById(id);
-        model.addAttribute("editCustomer", customer);
+        var customer = customerService.getById(id);
+        if (customer.isPresent()) {
+            model.addAttribute("editCustomer", customer.get());
+        }
         return "editCustomer";
     }
 
@@ -75,27 +69,21 @@ public class CustomerController {
                                @RequestParam(name = "customerAddress") String customerAddress,
                                @RequestParam(name = "customerEmail") String customerEmail,
                                @RequestParam(name = "customerLastname") String customerLastname,
-                               @RequestParam(name = "customerTel") String customerTel){
+                               @RequestParam(name = "customerTel") String customerTel) {
         customerService.editCustomer(id, customerName, customerLastname, customerAddress, customerEmail, customerTel);
+
         return "redirect:/customer/customer/" + id;
     }
 
+
     @GetMapping("/deleteCustomer/{id}")
-    public String deleteCustomer(@PathVariable Long id){
+    public String deleteCustomer(@PathVariable Long id) {
         Optional<Customer> optionalCustomer = this.customerService.getById(id);
         Customer customer = optionalCustomer.get();
         this.customerService.delete(customer);
 
         return "redirect:/customer/list";
     }
-
-
-
-
-
-
-
-
 
 
 }

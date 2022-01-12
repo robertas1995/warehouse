@@ -18,53 +18,56 @@ import java.util.Optional;
 @Data
 @Controller
 @RequestMapping("/employees")
-
 public class EmployeeController {
 
     private final EmployeeSerivice employeeSerivice;
-    private final EmployeeRepo employeeRepo;
 
 
     @GetMapping("/add")
-    public String createEmployee(Model model){
+    public String createEmployee(Model model) {
         model.addAttribute("employee", new Employee());
         return "createEmployeeForm";
     }
 
     @PostMapping("/add")
-    public String createEmployee(@Valid @ModelAttribute Employee employee){
+    public String createEmployee(@Valid @ModelAttribute Employee employee) {
 
-        return employeeSerivice.createEmployee(employee);
+        return "redirect:/employees/" + employeeSerivice.createEmployee(employee);
     }
 
     @GetMapping("/editEmployee/{id}")
-    public String editEmployees(@PathVariable Long id, Model model){
+    public String editEmployees(@PathVariable Long id, Model model) {
         model.addAttribute("employeeId", id);
-        var employee = employeeRepo.getById(id);
-        model.addAttribute("editEmployee", employee);
+        var employee = employeeSerivice.getById(id);
+        if (employee.isPresent()) {
+            model.addAttribute("editEmployee", employee.get());
+        }
         return "editEmployee";
     }
+
     @PostMapping("/editEmployee/{id}")
     public String editEmployees(@PathVariable Long id,
                                 @RequestParam(name = "employeeName") String employeeName,
                                 @RequestParam(name = "employeeSurname") String employeeSurname,
                                 @RequestParam(name = "employeeAddress") String employeeAddress,
                                 @RequestParam(name = "employeeUsername") String employeeUsername,
-                                @RequestParam(name = "employeeRole") Role employeeRole){
-        employeeSerivice.editEmployee(id,employeeName,employeeSurname,employeeAddress,employeeUsername,employeeRole);
+                                @RequestParam(name = "employeeRole") Role employeeRole) {
+        employeeSerivice.editEmployee(id, employeeName, employeeSurname, employeeAddress, employeeUsername, employeeRole);
 
-        return "redirect:/employees/employee/" + id;
+        return "redirect:/employees/" + id;
     }
+
     @GetMapping("/allEmployees")
-    public String getAll(Model model){
+    public String getAll(Model model) {
         Collection<Employee> employees = this.employeeSerivice.getAll();
         model.addAttribute("employees", employees);
 
         return "employeeList";
 
     }
+
     @GetMapping("/deleteEmployee/{id}")
-    public String deleteEmployee(@PathVariable Long id){
+    public String deleteEmployee(@PathVariable Long id) {
 
         Optional<Employee> optionalEmployee = this.employeeSerivice.getById(id);
         Employee employee = optionalEmployee.get();
@@ -72,14 +75,13 @@ public class EmployeeController {
         return "redirect:/employee";
     }
 
-    @GetMapping("/employee/{id}")
-    public String getEmployee(@PathVariable Long id, Model model){
+    @GetMapping("{id}")
+    public String getEmployee(@PathVariable Long id, Model model) {
         Optional<Employee> optionalEmployee = this.employeeSerivice.getById(id);
         Employee employee = optionalEmployee.get();
         model.addAttribute("employee", employee);
         return "employee";
     }
-
 
 
 }

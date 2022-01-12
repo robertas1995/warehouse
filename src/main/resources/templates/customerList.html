@@ -5,6 +5,7 @@
     <title>CustomerList</title>
     <link rel="stylesheet" type="text/css" th:href="@{/css/main.css}">
     <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/main.css}">
 </head>
 <body>
 <div th:replace="/fragments/header :: header"></div>
@@ -21,6 +22,8 @@
         <th class="tbody_th"> Address </th>
         <th class="tbody_th"> Email </th>
         <th class="tbody_th">Phone </th>
+        <th class="tbody_th" colspan="2"> Action</th>
+
     </tr>
     </thead>
     <tbody>
@@ -31,8 +34,8 @@
         <td class="tbody_td"><span th:text="${customers.address}">Address</span></td>
         <td class="tbody_td"><span th:text="${customers.email}">Email</span></td>
         <td class="tbody_td"><span th:text="${customers.tel}">Phone</span></td>
-        <td><a th:href="@{'/customer/deleteCustomer/{id}'(id=${customers.id})}" class="btn btn-danger">Delete</a></td>
-        <td><a th:href="@{'/customer/editCustomer/{id}'(id=${customers.id})}" class="btn btn-primary">Edit</a></td>
+        <td class="tbody_td"><a th:href="@{'/customer/deleteCustomer/{id}'(id=${customers.id})}" class="btn btn-danger">Delete</a></td>
+        <td class="tbody_td"><a th:href="@{'/customer/editCustomer/{id}'(id=${customers.id})}" class="btn btn-primary">Edit</a></td>
     </tr>
     </tbody>
 </table>

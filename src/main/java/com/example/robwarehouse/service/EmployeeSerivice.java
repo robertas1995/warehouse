@@ -13,12 +13,12 @@ public interface EmployeeSerivice {
 
     Optional<Employee> getById(Long id);
 
-    String createEmployee(Employee createdEmployee);
+    Long createEmployee(Employee createdEmployee);
 
-
+//TODO fix this (Employee employee)
     void editEmployee(Long employeeId, String employeeName, String employeeSurname, String employeeAddress, String employeeUsername, Role employeeRole);
 
     Collection<Employee> getAll();
-
+//TODO DELETE BYID
     void delete(Employee employee);
 }

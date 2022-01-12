@@ -1,22 +1,26 @@
 package com.example.robwarehouse.service;
 
 import com.example.robwarehouse.model.Customer;
-import org.springframework.stereotype.Service;
 
 import java.util.Collection;
 import java.util.Optional;
 
-@Service
+
 public interface CustomerService {
 
 
-    String createCustomer(Customer customer);
+    Long createCustomer(Customer customer);
 
     Optional<Customer> getById(Long id);
-
+//TODO get pages
     Collection<Customer> getAll();
+//TODO fix this (Customer customer)
+   void editCustomer(Long id, String customerName, String customerLastname, String customerAddress, String customerEmail, String customerTel);
 
-    void editCustomer(Long id, String customerName, String customerLastname, String customerAddress, String customerEmail, String customerTel);
+    //TODO FIX this (Customer customer)
 
+
+    //TODO DELETE BYID
     void delete(Customer customer);
+
 }

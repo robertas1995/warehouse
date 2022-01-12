@@ -35,12 +35,13 @@ public class PositionServiceImpl implements PositionService {
     }
 
     @Override
-    public void editPosition(Long id, Location positionLocation, Product positionProduct, Integer positionQuantyti){
-        var position = positionRepo.findById(id).orElseThrow(()-> new EntityNotFoundException("position not found"));
-        position.setLocation(positionLocation);
-        position.setProduct(positionProduct);
-        position.setQuantity(positionQuantyti);
+    public String editPosition(Long id, Position editPosition){
+        Position position = positionRepo.getById(id);
+        position.setLocation(editPosition.getLocation());
+        position.setProduct(editPosition.getProduct());
+        position.setQuantity(editPosition.getQuantity());
         positionRepo.save(position);
+        return "redirect:/positions/positionList";
 
     }
     @Override

@@ -43,28 +43,32 @@ public class PositionController {
     public String createNewPosition(@Valid @ModelAttribute Position position,
                                     @ModelAttribute Location location,
                                     @ModelAttribute Product product, Model model){
-        model.addAttribute("location", location.getId() );
-        model.addAttribute("product", product.getId());
 
-        System.out.println(position);
         return positionService.createNewPosition(position);
     }
     @GetMapping("/editPosition/{id}")
-    public String editPosition(@PathVariable Long id, Model model){
-        model.addAttribute("locationId",id);
-        var position = positionRepo.getById(id);
-        model.addAttribute("editPosition",position);
+    public String editPosition(@PathVariable Long id, Model model) {
+        var position = positionService.getById(id);
+        if (position.isPresent()) {
+            model.addAttribute("editPosition", position.get());
+            List<Location> location = locationRepo.findAll();
+            model.addAttribute("locations", location);
+            List<Product> product = productRepo.findAll();
+            model.addAttribute("products", product);
+        }
         return "editPosition";
     }
-    @PostMapping("editPosition/{id}")
-    public String editPosition(@PathVariable Long id,
-                               @RequestParam(name = "locationName") Location locationName,
-                               @RequestParam(name = "productName") Product productName,
-                               @RequestParam(name = "quantity") Integer quantity){
-        positionService.editPosition(id,locationName,productName,quantity);
 
-        return "redirect:/positions/positionList";
+
+    @PostMapping("/editPosition/{id}")
+    public String editPosition(@PathVariable Long id,
+                               @ModelAttribute Position position,
+                               @ModelAttribute Location location,
+                               @ModelAttribute Product product){
+
+        return positionService.editPosition(id,position);
     }
+
     @GetMapping("/positionList")
     public String getAll(Model model){
         Collection<Position> positions = this.positionService.getAll();

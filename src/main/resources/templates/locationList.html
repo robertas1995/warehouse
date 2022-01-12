@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>CustomerList</title>
+    <title>Location List</title>
     <link rel="stylesheet" type="text/css" th:href="@{/css/main.css}">
     <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
 </head>
@@ -17,6 +17,7 @@
         <tr>
             <th class="tbody_th">  ID</th>
             <th class="tbody_th">  Name</th>
+            <th class="tbody_th "></th>
 
         </tr>
         </thead>
@@ -24,8 +25,8 @@
         <tr th:each="location : ${location}">
             <td class="tbody_td"><span th:text="${location.id}"> ID</span> </td>
             <td class="tbody_td"><span th:text="${location.locationName}">Name</span></td>
-            <td><a th:href="@{'/location/delete/{id}'(id=${location.id})}" class="btn btn-danger">Delete</a></td>
-            <td><a th:href="@{'/location/edit/{id}'(id=${location.id})}" class="btn btn-primary">Edit</a></td>
+            <td class="tbody_td"><a th:href="@{'/location/delete/{id}'(id=${location.id})}" class="btn btn-danger">Delete</a></td>
+            <td class="tbody_td"><a th:href="@{'/location/edit/{id}'(id=${location.id})}" class="btn btn-primary">Edit</a></td>
         </tr>
         </tbody>
     </table>

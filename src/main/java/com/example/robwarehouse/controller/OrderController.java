@@ -38,7 +38,7 @@ public class OrderController {
         List<Employee> employees = employeeRepo.findAll();
         model.addAttribute("employees", employees);
         List<Customer> customers = customerRepo.findAll();
-        model.addAttribute("customer",customers);
+        model.addAttribute("customers",customers);
 
 
         return "orderForm";
