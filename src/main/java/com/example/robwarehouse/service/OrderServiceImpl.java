@@ -1,63 +1,77 @@
 package com.example.robwarehouse.service;
 
 import com.example.robwarehouse.model.*;
+import com.example.robwarehouse.repository.OrderItemRepo;
 import com.example.robwarehouse.repository.OrderRepo;
+import com.example.robwarehouse.repository.ProductRepo;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 @AllArgsConstructor
-public class OrderServiceImpl implements OrderSevice{
+public class OrderServiceImpl implements OrderSevice {
 
     private final OrderRepo orderRepo;
     private final OrderItemService orderItemService;
+    private final OrderItemRepo orderItemRepo;
+    private final ProductService productService;
+
 
 
     @Override
-    public Optional<Order> createNewOrder(Order createdOrder, Customer customer, List<OrderItem> orderItems ) {
+    public Long createNewOrder(Order newOrder) {
+        Order order = new Order();
+        order.setCustomer(newOrder.getCustomer());
+        order.setStatus(Status.Checking);
+        order.getCreationDate();
+        order.setEmployee(newOrder.getEmployee());
+        ArrayList<OrderItem> orderItems = new ArrayList();
+        order.setOrderItems(newOrder.getOrderItems());
+        order.setTotalPrice(newOrder.getTotalPrice());
+//        for(OrderItem item: orderItems) {
+//            OrderItem orderItem = new OrderItem();
+//            orderItem.setId(item.getOrderId());
+//            orderItem.setProduct(item.getProduct());
+//            orderItem.setQuantity(item.getQuantity());
+//            orderItem.setPrice(item.getPrice());
+//            orderItemRepo.save(item);
+//        }
+        orderRepo.save(order);
 
-
-        Order newOrderAdd = new Order();
-        newOrderAdd.setCustomer(customer);
-        newOrderAdd.setStatus(Status.Checking);
-        newOrderAdd.getCreationDate();
-        for(OrderItem item: orderItems) {
-            OrderItem orderItem = new OrderItem();
-            orderItem.setId(item.getId());
-            orderItem.setProduct(item.getProduct());
-            orderItem.setQuantity(item.getQuantity());
-            orderItem.setOrder(newOrderAdd);
-
-        }
-        orderRepo.save(newOrderAdd);
-        System.out.println("item was added");
-
-        return  createNewOrder(createdOrder,customer,orderItems);
+        return order.getId();
     }
 
     @Override
-        public Optional<Order>getById(Long id){return orderRepo.findById(id);}
+    public Optional<Order> getById(Long id) {
+        return orderRepo.findById(id);
+    }
+
+    @Override
+    public OrderItem save(OrderItem orderItem) {
+        return orderItemRepo.saveAndFlush(orderItem);
+    }
 
 
-@Override
-    public String addItem(Order createdOrder){
-        Order order = new Order();
-        order.setOrderItems(createdOrder.getOrderItems());
-        order.setCreationDate(LocalDate.now());
-        order.setStatus(Status.Checking);
-        order.setCustomer(createdOrder.getCustomer());
-        order.setEmployee(createdOrder.getEmployee());
-        orderRepo.save(order);
-        return "singleOrder";
+    @Override
+    public Long addItem(OrderItem createdOrderItem, Long orderId, Order order) {
+
+
+        OrderItem orderItem = new OrderItem();
+       orderItem.setOrder(orderRepo.getById(orderId));
+       orderItem.setProduct(createdOrderItem.getProduct());
+        orderItem.setQuantity(createdOrderItem.getQuantity());
+        orderItem.setPrice(createdOrderItem.getProduct().getPrice() * createdOrderItem.getQuantity());
+        orderItemRepo.save(orderItem);
+        return orderId;
+    }
+
+
 }
 
-    }
+
 
 
 

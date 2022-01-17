@@ -20,10 +20,6 @@ public class PositionServiceImpl implements PositionService {
     @Override
     public Optional<Position> getById(Long id){return positionRepo.findById(id);}
 
-
-
-
-
     @Override
     public String createNewPosition(Position newPosition){
         Position position = new Position();

@@ -25,7 +25,7 @@ public class ProductServiceImpl implements ProductService {
             newProduct.setDescription(createdProduct.getDescription());
             productRepo.save(newProduct);
 
-            return "redirect: /goods";
+            return "redirect: /products/list";
         }
 
         @Override

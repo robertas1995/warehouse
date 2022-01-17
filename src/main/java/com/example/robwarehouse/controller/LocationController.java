@@ -30,7 +30,7 @@ public class LocationController {
         return "locationForm";
     }
     @PostMapping("/createNewLocation")
-    public String createNewLocation(@Valid @ModelAttribute Location location, Product product ){
+    public String createNewLocation(@Valid @ModelAttribute Location location ){
 
         //TODO fix GetBYID
         return locationService.createNewLocation(location);

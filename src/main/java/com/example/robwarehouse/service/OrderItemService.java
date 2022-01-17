@@ -17,4 +17,9 @@ public class OrderItemService {
     public void addOrderProducts(OrderItem orderItem){
         orderItemRepo.save(orderItem);
     }
+
+    public OrderItem save(OrderItem orderItem) { return orderItemRepo.saveAndFlush(orderItem);
+
+    }
+
 }

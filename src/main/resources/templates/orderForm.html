@@ -11,25 +11,26 @@
 
 <form action="#"
       th:action="@{/createNewOrder}"
-      th:object="${order}"
-      method="put">
+      th:object="${orderItems}"
+      method="post">
 
 
-<div class="col-lg-3" th:object="${customers}">
-    <select class="form-control" id="customerOrder" name="customers">
-        <option value="">Select Customer</option>
-        <option th:each="customers : ${customers}"
-                th:value="${customers.name}"
-                th:text="${customers.name}+'  '+${customers.lastname}"></option>
+<div class="col-lg-3" >
+    <select class="form-control" th:field="${order.customer.id}"  id="customers">
+        <option value="0">select Customer</option>
+        <option th:each="customer : ${customers}"
+                th:value="${customer.id}"
+                th:text="${customer.name}+' '+${customer.lastname}"></option>
     </select>
 </div>
-<div class="col-lg-3" th:object="${employees}">
-    <select class="form-control" id="employeeOrder" name="employees">
+<div class="col-lg-3" >
+    <select class="form-control" th:field="${order.employee.id}" id="employeeOrder" name="employees">
         <option value="">Select Employee</option>
         <option th:each="employee : ${employees}"
-                th:value="${employee.name}"
+                th:value="${employee.id}"
                 th:text="${employee.name}+'  '+${employee.surname}"></option>
     </select>
+</div>
 
 <div  class="items">
         <table>
@@ -39,6 +40,7 @@
                 <th> Product price</th>
                 <th> Name </th>
                 <th> Quantity </th>
+                <th> Action</th>
             </tr>
             </thead>
             <tbody>
@@ -47,14 +49,13 @@
                 <td><span th:text="${item.price}">Price</span></td>
                 <td><span th:text="${item.name}">Name</span></td>
                 <td><input name="quantity" type="number"></td>
+                <td> <button type="submit"> Add</button> </td>
             </tr>
             </tbody>
         </table>
         <div>
             <button type="submit">Add item</button>
         </div>
-
-
 </div>
 </form>
 </body>

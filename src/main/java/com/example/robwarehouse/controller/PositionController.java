@@ -44,6 +44,7 @@ public class PositionController {
                                     @ModelAttribute Location location,
                                     @ModelAttribute Product product, Model model){
 
+        System.out.println(position);
         return positionService.createNewPosition(position);
     }
     @GetMapping("/editPosition/{id}")

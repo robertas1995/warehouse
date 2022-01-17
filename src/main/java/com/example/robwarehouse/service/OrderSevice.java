@@ -12,10 +12,14 @@ import java.util.Optional;
 @Service
 public interface OrderSevice {
 
-
-    Optional<Order> createNewOrder(Order createdOrder, Customer customer, List<OrderItem> orderItems);
+    Long createNewOrder(Order newOrder);
 
     Optional<Order> getById(Long id);
 
-    String addItem(Order createdOrder);
+    OrderItem save(OrderItem orderItem);
+
+    Long addItem(OrderItem orderItem, Long id, Order order);
+
+//    Long addItem(OrderItem createdOrderItem, Long orderId);
+
 }

@@ -3,11 +3,16 @@ package com.example.robwarehouse.dto;
 import lombok.Data;
 
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
 
 @Data
 public class OrderItemDto {
-    private int quantity;
-    private Long productId;
+    private ArrayList<String> orderList;
 
-    public OrderItemDto() {}
+    public ArrayList<String> getOrderList(){
+        return orderList;
+    }
+    public void setOrderList(ArrayList<String> orderList){
+        this.orderList=orderList;
+    }
 }

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>new order</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/main.css}">
+    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
+    <div th:replace="/fragments/header :: header"></div>
+</head>
+<body>
+
+<form action="#"
+      th:action="@{/createNewOrder}"
+      th:object="${order}"
+      method="post">
+
+
+    <div class="col-lg-3" >
+        <select class="form-control" th:field="${order.customer.id}"  id="customers">
+            <option value="0">select Customer</option>
+            <option th:each="customer : ${customers}"
+                    th:value="${customer.id}"
+                    th:text="${customer.name}+' '+${customer.lastname}"></option>
+        </select>
+    </div>
+    <div class="col-lg-3" >
+        <select class="form-control" th:field="${order.employee.id}" id="employeeOrder" name="employees">
+            <option value="">Select Employee</option>
+            <option th:each="employee : ${employees}"
+                    th:value="${employee.id}"
+                    th:text="${employee.name}+'  '+${employee.surname}"></option>
+        </select>
+    </div>
+    <div class="col-lg-3" >
+        <select class="form-control" th:field="${order.orderItems.id}" id="employeeOrder" name="employees">
+            <option value="">Select Employee</option>
+            <option th:each="item : ${items}"
+                    th:value="${item.id}"
+                    th:text="${item.name}+'  '+${item.}"></option>
+        </select>
+        <div>
+            <button type="submit">Add item</button>
+        </div>
+
+
+    </div>
+
+</form>
+</body>
+</html>

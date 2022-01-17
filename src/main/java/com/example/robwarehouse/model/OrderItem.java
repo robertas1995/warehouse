@@ -15,36 +15,32 @@ public class OrderItem {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "order_id")
-    private Long orderId;
-
-    @Column(name = "product_id")
-    private @NotNull Long productId;
+//    @Column(name = "order_id")
+//    private Long orderId;
+//
+//    @Column(name = "product_id")
+//    private  Long productId;
 
     @Column(name = "quantity")
     private Integer quantity;
 
     @Column(name = "price")
-    private @NotNull double price;
+    private double price;
 
     @ManyToOne
-    @JoinColumn(name = "order_id",referencedColumnName = "id", insertable = false,updatable = false)
+    @JoinColumn(name = "order_id",referencedColumnName = "id")
     private Order order;
 
-    @OneToOne
-    @JoinColumn(name = "product_id",referencedColumnName = "id",insertable = false,updatable = false)
+    @ManyToOne
+    @JoinColumn(name = "product_id",referencedColumnName = "id")
     private Product product;
 
-    public OrderItem(){}
 
-    public OrderItem(Long orderId, Long productId,int quantity, double price){
-        this.orderId = productId;
-        this.productId = productId;
-        this.price = price;
-        this.orderId = orderId;
-
+    public OrderItem(Order orderId, Product productId, Double productPrice, Integer productQuantity) {
+        this.price = productPrice;
+        this.quantity = productQuantity;
+    }
+    public OrderItem(){
 
     }
-
-
 }
