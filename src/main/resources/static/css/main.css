@@ -26,3 +26,7 @@ table{
 footer{
     margin-top: 200px;
 }
+.navbar-brand{
+    color: black;
+    font-family: "cursive";
+}

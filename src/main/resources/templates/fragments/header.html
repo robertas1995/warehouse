@@ -9,21 +9,21 @@
     <nav th:fragment="navbar" class="navbar navbar-expand-md bg-dark navbar-dark">
         <div class="container-fluid">
             <div class="navbar-header">
-                <a class="navbar-brand" th:href="@{/}">RobWarehouse</a>
+                <a class="navbar-brand" th:href="@{/}"> [RBWarehouse] </a>
             </div>
             <ul class="nav navbar-nav">
 
-                <li><a class="nav-link" th:href="@{/customer/list}">Customer</a></li>
+                <li><a class="nav-link" th:href="@{/customers/list}">Customer</a></li>
 
                 <li><a class="nav-link" th:href="@{/positions/positionList}">Position List</a></li>
 
-                <li><a class="nav-link" th:href="@{/createNewOrder}">Creat order</a></li>
+                <li><a class="nav-link" th:href="@{/orderList}">Order</a></li>
 
                 <li><a class="nav-link" th:href="@{/products/list}">Products</a></li>
 
-                <li><a class="nav-link" th:href="@{/employees/allEmployees}">Employee</a></li>
+                <li><a class="nav-link" th:href="@{/employees/list}">Employee</a></li>
 
-                <li><a class="nav-link" th:href="@{/location/all}"> Location</a> </li>
+                <li><a class="nav-link" th:href="@{/locations/list}"> Location</a> </li>
             </ul>
         </div>
     </nav>

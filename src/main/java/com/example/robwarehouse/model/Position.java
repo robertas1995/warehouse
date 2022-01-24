@@ -25,7 +25,6 @@ public class Position {
     private Integer quantity;
 
 
-
 }
 
 

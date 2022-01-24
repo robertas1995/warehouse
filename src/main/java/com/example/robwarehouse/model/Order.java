@@ -5,7 +5,6 @@ import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -31,17 +30,13 @@ public class Order {
     @ManyToOne
     private Employee employee;
 
-    @OneToMany(mappedBy = "order", cascade = CascadeType.REMOVE,fetch = FetchType.EAGER)
-    private List<OrderItem> orderItems;
 
     @Column(name = "total_price")
     private Double totalPrice;
 
-    public Order(){
+    public Order() {
 
     }
-
-
 
 
 }

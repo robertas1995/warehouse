@@ -2,21 +2,20 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Employee</title>
+    <title>Customer</title>
     <link rel="stylesheet" type="text/css" th:href="@{/css/main.css}">
     <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
 </head>
 <body>
 <div th:replace="/fragments/header :: header"></div>
 
-<div class="container" style="text-align: center">
-    <div class="customer">
-        <h2 th:text="${employee.name}+' '+${employee.surname}">Name</h2>
-        <p th:text="${employee.address}">Address</p>
-        <p th:text="${employee.username}">Phone</p>
-        <p th:text="${employee.role}">Email</p>
 
-        <a th:href="@{'/employees/editEmployee/{id}'(id=${employee.id})}" class="btn btn-primary">Edit</a>
+<div class="container" style="text-align: center">
+    <div class="product">
+        <h2 th:text="${object.name}">Name</h2>
+        <p th:text="${object.price}">Price</p>
+        <p th:text="${object.description}">Description</p>
+
     </div>
 </div>
 <footer th:replace="/fragments/footer :: footer"></footer>

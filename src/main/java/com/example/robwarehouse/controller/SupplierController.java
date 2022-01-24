@@ -20,7 +20,7 @@ public class SupplierController {
     private final SupplierRepo supplierRepo;
 
     @GetMapping("/createNewSupplier")
-    public String createNewSupplier(Model model){
+    public String createNewSupplier(Model model) {
 
         Supplier supplier = new Supplier();
         model.addAttribute("supplier", supplier);
@@ -29,7 +29,7 @@ public class SupplierController {
     }
 
     @PostMapping("/createNewSupplier")
-    public String createNewSupplier(@Valid @ModelAttribute Supplier supplier){
+    public String createNewSupplier(@Valid @ModelAttribute Supplier supplier) {
         return supplierService.createNewSupplier(supplier);
     }
 }

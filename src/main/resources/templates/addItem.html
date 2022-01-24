@@ -14,14 +14,14 @@
           method="post">
 
 
-<!--       <div class="form-group blu-margin">&ndash;&gt;-->
-<!--            <select class="form-control" th:field="${orderItem.product.id}" id="locations">-->
-<!--                <option value="0">select operator</option>-->
-<!--                <option th:each="product : ${products}"-->
-<!--                        th:value="${product.id}"-->
-<!--                        th:text="${product.name}+' '+${product.price}"></option>-->
-<!--            </select>-->
-<!--        </div>-->
+       <div class="form-group blu-margin">
+            <select class="form-control" th:field="${orderItem.product}" id="locations">
+                <option value="0">select operator</option>
+                <option th:each="product : ${products}"
+                        th:value="${product.id}"
+                        th:text="${product.name}+' '+${product.price}"></option>
+            </select>
+        </div>
 
 
         <div>
@@ -30,18 +30,18 @@
                 <input type="number" th:field="*{orderItem.quantity}" placeholder="Quantity"/>
             </label>
         </div>
-        <div>
-            <label>
+<!--        <div>-->
+<!--            <label>-->
 
-                <input type="text" th:field="*{orderItem.product}" placeholder="ProductID"/>
-            </label>
-        </div>
-        <div>
-            <label>
+<!--                <input type="text" th:field="*{orderItem.product}" placeholder="ProductID"/>-->
+<!--            </label>-->
+<!--        </div>-->
+<!--        <div>-->
+<!--            <label>-->
 
-                <input type="text" th:field="*{orderItem.price}" placeholder="Price"/>
-            </label>
-        </div>
+<!--                <input type="text" th:field="*{orderItem.price}" placeholder="Price"/>-->
+<!--            </label>-->
+<!--        </div>-->
 <!--        <div>-->
 <!--            <label>-->
 

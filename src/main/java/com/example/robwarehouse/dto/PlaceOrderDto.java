@@ -7,9 +7,10 @@ import javax.validation.constraints.NotNull;
 @Data
 public class PlaceOrderDto {
 
-    private  Integer id;
+    private Integer id;
     private @NotNull Integer userId;
     private @NotNull Double totalPrice;
 
-    public PlaceOrderDto(){}
+    public PlaceOrderDto() {
+    }
 }

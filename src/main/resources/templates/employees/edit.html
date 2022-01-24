@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Edit customer</title>
+    <title>Edit employee</title>
     <link rel="stylesheet" type="text/css" th:href="@{/css/main.css}">
     <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
 </head>
@@ -11,31 +11,32 @@
 
 
 <div class="container">
-    <form th:action="'/customer/editCustomer/'+${id}"
+    <form th:action="'/employees/edit/'+${id}"
+          th:object="${editObject}"
           method="post">
         <div>
             <label>
-                <input  th:value="*{editCustomer.getName()}" name="customerName" placeholder="customer name"/>
+                <input  th:field="*{name}"  placeholder=" name"/>
             </label>
         </div>
         <div>
             <label>
-                <input  th:value="*{editCustomer.getLastname()}" name="customerLastname" placeholder="customer lastname"/>
+                <input  th:field="*{surname}"  placeholder=" lastname"/>
             </label>
         </div>
         <div>
             <label>
-                <input  th:value="*{editCustomer.getAddress()}" name="customerAddress" placeholder="customer address"/>
+                <input  th:field="*{address}"  placeholder=" address"/>
             </label>
         </div>
         <div>
             <label>
-                <input  th:value="*{editCustomer.getEmail()}" name="customerEmail" placeholder="customer email"/>
+                <input  th:field="*{username}"  placeholder=" email"/>
             </label>
         </div>
         <div>
             <label>
-                <input  th:value="*{editCustomer.getTel()}" name="customerTel" placeholder="customer Tel"/>
+                <input  th:field="*{role}"  placeholder="Role"/>
             </label>
         </div>
         <div>

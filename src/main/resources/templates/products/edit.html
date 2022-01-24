@@ -9,11 +9,22 @@
 
 
 <div class="container">
-    <form th:action="'/location/edit/'+${id}"
+    <form th:action="'/products/edit/'+${id}"
+          th:object="${editObject}"
           method="post">
         <div>
-            <label title="location Name">
-                <input  th:value="*{editLocation.getLocationName()}" name="locationName" placeholder="Location name"/>
+            <label>
+                <input  th:field="*{name}" placeholder="product Name"/>
+            </label>
+        </div>
+        <div>
+            <label>
+                <input  th:field="*{price}"  placeholder="Price"/>
+            </label>
+        </div>
+        <div>
+            <label>
+                <input th:field="*{description}"  placeholder="About Goods"/>
             </label>
         </div>
         <div>

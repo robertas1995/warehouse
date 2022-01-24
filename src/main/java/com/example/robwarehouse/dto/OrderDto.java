@@ -1,6 +1,5 @@
 package com.example.robwarehouse.dto;
 
-import com.example.robwarehouse.model.Order;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 

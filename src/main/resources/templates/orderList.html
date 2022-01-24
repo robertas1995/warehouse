@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Location List</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/main.css}">
+    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
+</head>
+<body>
+<div th:replace="/fragments/header :: header"></div>
+
+<div class="products" style="text-align: center">
+    <a href="createNewOrder" class="btn btn-success"> <i class="fa fa-arrow-circle-o-left"></i>New Order</a>
+
+    <table>
+        <thead>
+        <tr>
+            <th class="tbody_th">  ID</th>
+            <th class="tbody_th">  Creation Date</th>
+            <th class="tbody_th">  Status</th>
+            <th class="tbody_th">  Total Price</th>
+            <th class="tbody_th" colspan="2"> Action</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="order : ${orders}">
+            <td class="tbody_td"><span th:text="${order.id}"> ID</span> </td>
+            <td class="tbody_td"><span th:text="${order.creationDate}">creattion Date</span></td>
+            <td class="tbody_td"><span th:text="${order.status}">Status</span></td>
+            <td class="tbody_td"><span th:text="${order.totalPrice}">Price</span></td>
+            <td class="tbody_td"><a th:href="@{'/deleteOrder/{id}'(id=${order.id})}" class="btn btn-danger">Delete</a></td>
+            <td class="tbody_td"><a th:href="@{'/createdOrder/{id}'(id=${order.id})}" class="btn btn-primary">Edit</a></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<footer th:replace="/fragments/footer :: footer"></footer>
+</body>
+</html>

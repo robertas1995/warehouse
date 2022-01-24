@@ -8,13 +8,13 @@
 
 
 <div th:replace="/fragments/header :: header"></div>
-<div class="employee">
+<div class="employee" th:class="align-center">
 
 <h2>Register new Employee</h2>
 
 <form action="#"
-      th:action="@{/employees/add}"
-      th:object="${employee}"
+      th:action="@{'/employees/create'}"
+      th:object="${newObject}"
       method="post">
     <div>
         <label>

@@ -19,13 +19,13 @@ import javax.validation.Valid;
 public class StockInOrderController {
 
     @GetMapping("/in")
-    public String createNewOrderIn(Model model){
+    public String createNewOrderIn(Model model) {
         model.addAttribute("goods", new Product());
         return "createNewOrderIn";
     }
 
     @PostMapping("/in")
-    public String createNewOrderIn(@Valid @ModelAttribute Product product){
+    public String createNewOrderIn(@Valid @ModelAttribute Product product) {
 
         return "";
     }

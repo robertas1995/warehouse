@@ -11,7 +11,7 @@
 <div th:replace="/fragments/header :: header"></div>
 
 <div class="products" style="text-align: center">
-<a href="add" class="btn btn-success"> <i class="fa fa-arrow-circle-o-left"></i>New customer</a>
+<a href="/customers/create" class="btn btn-success"> <i class="fa fa-arrow-circle-o-left"></i>New customer</a>
 
 <table>
     <thead>
@@ -27,15 +27,15 @@
     </tr>
     </thead>
     <tbody>
-    <tr th:each="customers : ${customers}">
+    <tr th:each="customers : ${objects}">
         <td class="tbody_td"><span th:text="${customers.id}"> ID</span> </td>
         <td class="tbody_td"><span th:text="${customers.name}">Name</span></td>
         <td class="tbody_td"><span th:text="${customers.lastname}">Lastname</span></td>
         <td class="tbody_td"><span th:text="${customers.address}">Address</span></td>
         <td class="tbody_td"><span th:text="${customers.email}">Email</span></td>
         <td class="tbody_td"><span th:text="${customers.tel}">Phone</span></td>
-        <td class="tbody_td"><a th:href="@{'/customer/deleteCustomer/{id}'(id=${customers.id})}" class="btn btn-danger">Delete</a></td>
-        <td class="tbody_td"><a th:href="@{'/customer/editCustomer/{id}'(id=${customers.id})}" class="btn btn-primary">Edit</a></td>
+        <td class="tbody_td"><a th:href="@{'/customers/delete/{id}'(id=${customers.id})}" class="btn btn-danger">Delete</a></td>
+        <td class="tbody_td"><a th:href="@{'/customers/edit/{id}'(id=${customers.id})}" class="btn btn-primary">Edit</a></td>
     </tr>
     </tbody>
 </table>

@@ -7,8 +7,8 @@
 <body>
 
 <div class="container">
-    <form th:action="@{'/location/createNewLocation'}"
-          th:object="${location}"
+    <form th:action="@{'/locations/create'}"
+          th:object="${newObject}"
           method="post">
         <div>
             <label>

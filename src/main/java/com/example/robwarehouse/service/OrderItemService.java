@@ -1,25 +1,20 @@
 package com.example.robwarehouse.service;
 
 import com.example.robwarehouse.model.OrderItem;
-import com.example.robwarehouse.repository.OrderItemRepo;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.Optional;
 
 @Service
 @Transactional
-public class OrderItemService {
+public interface OrderItemService {
 
-    @Autowired
-    private OrderItemRepo orderItemRepo;
+    OrderItem save(OrderItem orderItem);
 
-    public void addOrderProducts(OrderItem orderItem){
-        orderItemRepo.save(orderItem);
-    }
+    Optional<OrderItem> getById(Long id);
 
-    public OrderItem save(OrderItem orderItem) { return orderItemRepo.saveAndFlush(orderItem);
+    void delete(OrderItem orderItem);
 
-    }
-
+    Long editItem(Long id, OrderItem orderItem);
 }

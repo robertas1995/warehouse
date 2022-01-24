@@ -11,31 +11,32 @@
 
 
 <div class="container">
-    <form th:action="'/employees/editEmployee/'+${id}"
+    <form th:action="'/customers/edit/'+${id}"
+          th:object="${editObject}"
           method="post">
         <div>
             <label>
-                <input  th:value="*{editEmployee.getName()}" name="employeeName" placeholder=" name"/>
+                <input  th:field="*{name}" placeholder="customer name"/>
             </label>
         </div>
         <div>
             <label>
-                <input  th:value="*{editEmployee.getSurname()}" name="employeeSurname" placeholder=" lastname"/>
+                <input  th:field="*{lastname}"  placeholder="customer lastname"/>
             </label>
         </div>
         <div>
             <label>
-                <input  th:value="*{editEmployee.getAddress()}" name="employeeAddress" placeholder=" address"/>
+                <input  th:field="*{address}"  placeholder="customer address"/>
             </label>
         </div>
         <div>
             <label>
-                <input  th:value="*{editEmployee.getUsername()}" name="employeeUsername" placeholder=" email"/>
+                <input  th:field="*{email}"  placeholder="customer email"/>
             </label>
         </div>
         <div>
             <label>
-                <input  th:value="*{editEmployee.getRole()}" name="employeeRole" placeholder="Role"/>
+                <input  th:field="*{tel}"  placeholder="customer Tel"/>
             </label>
         </div>
         <div>

@@ -13,8 +13,8 @@
     <h2>Register new Client</h2>
 
     <form action="#"
-          th:action="@{/customer/add}"
-          th:object="${customer}"
+          th:action="@{'/customers/create'}"
+          th:object="${newObject}"
           method="post">
         <div>
             <label>

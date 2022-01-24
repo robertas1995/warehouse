@@ -1,14 +1,17 @@
 package com.example.robwarehouse.service;
 
-import com.example.robwarehouse.model.*;
+import com.example.robwarehouse.model.Order;
+import com.example.robwarehouse.model.OrderItem;
+import com.example.robwarehouse.model.Status;
 import com.example.robwarehouse.repository.OrderItemRepo;
 import com.example.robwarehouse.repository.OrderRepo;
-import com.example.robwarehouse.repository.ProductRepo;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
-import java.util.*;
+import javax.transaction.Transactional;
+import java.util.Collection;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
@@ -20,7 +23,6 @@ public class OrderServiceImpl implements OrderSevice {
     private final ProductService productService;
 
 
-
     @Override
     public Long createNewOrder(Order newOrder) {
         Order order = new Order();
@@ -28,17 +30,8 @@ public class OrderServiceImpl implements OrderSevice {
         order.setStatus(Status.Checking);
         order.getCreationDate();
         order.setEmployee(newOrder.getEmployee());
-        ArrayList<OrderItem> orderItems = new ArrayList();
-        order.setOrderItems(newOrder.getOrderItems());
         order.setTotalPrice(newOrder.getTotalPrice());
-//        for(OrderItem item: orderItems) {
-//            OrderItem orderItem = new OrderItem();
-//            orderItem.setId(item.getOrderId());
-//            orderItem.setProduct(item.getProduct());
-//            orderItem.setQuantity(item.getQuantity());
-//            orderItem.setPrice(item.getPrice());
-//            orderItemRepo.save(item);
-//        }
+//
         orderRepo.save(order);
 
         return order.getId();
@@ -56,16 +49,29 @@ public class OrderServiceImpl implements OrderSevice {
 
 
     @Override
+    @Transactional
     public Long addItem(OrderItem createdOrderItem, Long orderId, Order order) {
 
 
         OrderItem orderItem = new OrderItem();
-       orderItem.setOrder(orderRepo.getById(orderId));
-       orderItem.setProduct(createdOrderItem.getProduct());
+        orderItem.setOrder(orderRepo.getById(orderId));
+        orderItem.setProduct(createdOrderItem.getProduct());
         orderItem.setQuantity(createdOrderItem.getQuantity());
         orderItem.setPrice(createdOrderItem.getProduct().getPrice() * createdOrderItem.getQuantity());
         orderItemRepo.save(orderItem);
+        Double allItems = orderItemRepo.findByOrderId(orderId).stream()
+                .map(x -> x.getPrice())
+                .collect(Collectors.summingDouble(Double::doubleValue));
+        order.setTotalPrice(allItems);
+        orderRepo.getById(orderId).setTotalPrice(allItems);
+
+
         return orderId;
+    }
+
+    @Override
+    public Collection<Order> getAll() {
+        return orderRepo.findAll();
     }
 
 

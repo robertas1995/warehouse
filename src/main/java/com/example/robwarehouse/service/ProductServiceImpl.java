@@ -7,46 +7,48 @@ import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
 import java.util.Collection;
-import java.util.Optional;
 
 @Service
 @AllArgsConstructor
 public class ProductServiceImpl implements ProductService {
 
-        private final ProductRepo productRepo;
-
-
-        @Override
-        public String createNewGoods(Product createdProduct){
-
-            Product newProduct = new Product();
-            newProduct.setName(createdProduct.getName());
-            newProduct.setPrice(createdProduct.getPrice());
-            newProduct.setDescription(createdProduct.getDescription());
-            productRepo.save(newProduct);
-
-            return "redirect: /products/list";
-        }
-
-        @Override
-        public void delete(Product product){
-            productRepo.delete(product);}
-
+    private final ProductRepo productRepo;
 
 
     @Override
-    public void editGoods(Long productId, String productName, Double productPrice, String productDescription){
-            var goods = productRepo.findById(productId).orElseThrow(()-> new EntityNotFoundException("goods not found"));
-            goods.setName(productName);
-            goods.setPrice(productPrice);
-            goods.setDescription(productDescription);
-            productRepo.save(goods);
-        }
+    public Long create(Product createdProduct) {
+
+        Product newProduct = new Product();
+        newProduct.setName(createdProduct.getName());
+        newProduct.setPrice(createdProduct.getPrice());
+        newProduct.setDescription(createdProduct.getDescription());
+        productRepo.save(newProduct);
+
+        return newProduct.getId();
+    }
+
+    @Override
+    public void update(Product update) {
+        var editProduct = productRepo.findById(update.getId()).orElseThrow(() -> new EntityNotFoundException("Product not found"));
+        editProduct.setPrice(update.getPrice());
+        editProduct.setName(update.getName());
+        editProduct.setDescription(update.getDescription());
+        productRepo.save(editProduct);
+    }
+
+    @Override
+    public void delete(Long id) {
+        productRepo.deleteById(id);
+    }
 
 
-        @Override
-        public Optional<Product> getById(Long id){ return  productRepo.findById(id);}
+    @Override
+    public Product get(Long id) {
+        return productRepo.findById(id).orElseThrow(() -> new EntityNotFoundException("Product not found"));
+    }
 
-        @Override
-        public Collection<Product> getAll(){return productRepo.findAll();}
+    @Override
+    public Collection<Product> getAll() {
+        return productRepo.findAll();
+    }
 }

@@ -9,14 +9,14 @@ import com.example.robwarehouse.repository.ProductRepo;
 import com.example.robwarehouse.service.PositionService;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.boot.context.config.ConfigDataResourceNotFoundException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import javax.persistence.EntityNotFoundException;
 import javax.validation.Valid;
-import java.util.*;
+import java.util.Collection;
+import java.util.List;
+import java.util.Optional;
 
 @Controller
 @Slf4j
@@ -30,23 +30,25 @@ public class PositionController {
     private final ProductRepo productRepo;
 
     @GetMapping("/createNewPosition")
-    public String createNewPosition(Model model){
+    public String createNewPosition(Model model) {
         Position position = new Position();
         model.addAttribute("position", position);
         List<Location> locations = locationRepo.findAll();
-        model.addAttribute("locations",locations);
+        model.addAttribute("locations", locations);
         List<Product> products = productRepo.findAll();
         model.addAttribute("products", products);
         return "positionForm";
     }
+
     @PostMapping("/createNewPosition")
     public String createNewPosition(@Valid @ModelAttribute Position position,
                                     @ModelAttribute Location location,
-                                    @ModelAttribute Product product, Model model){
+                                    @ModelAttribute Product product, Model model) {
 
-        System.out.println(position);
-        return positionService.createNewPosition(position);
+        positionService.createNewPosition(position);
+        return "redirect:/positions/positionList" ;
     }
+
     @GetMapping("/editPosition/{id}")
     public String editPosition(@PathVariable Long id, Model model) {
         var position = positionService.getById(id);
@@ -65,27 +67,31 @@ public class PositionController {
     public String editPosition(@PathVariable Long id,
                                @ModelAttribute Position position,
                                @ModelAttribute Location location,
-                               @ModelAttribute Product product){
+                               @ModelAttribute Product product) {
 
-        return positionService.editPosition(id,position);
+        positionService.editPosition(id, position);
+
+        return "redirect:/positions/positionList";
     }
 
     @GetMapping("/positionList")
-    public String getAll(Model model){
-        Collection<Position> positions = this.positionService.getAll();
-        model.addAttribute("positions",positions);
+    public String getAll(Model model) {
+        Collection<Position> position = this.positionService.getAll();
+        model.addAttribute("positions", position);
 
         return "positionList";
     }
+
     @GetMapping("/position/{id}")
-    public String getPosition(@PathVariable Long id, Model model){
+    public String getPosition(@PathVariable Long id, Model model) {
         Optional<Position> optionalPosition = this.positionService.getById(id);
         Position position = optionalPosition.get();
         model.addAttribute("position", position);
         return "position";
     }
+
     @GetMapping("/delete/{id}")
-    public  String deleteLocation(@PathVariable Long id){
+    public String deleteLocation(@PathVariable Long id) {
         Optional<Position> optionalPosition = this.positionService.getById(id);
         Position position = optionalPosition.get();
         this.positionService.delete(position);
@@ -93,4 +99,10 @@ public class PositionController {
     }
 
 
+    @GetMapping("/needToOrder")
+    public String needToOrder(Model model) {
+        Collection<Position> position = this.positionService.getLow();
+        model.addAttribute("positions", position);
+        return "positionList";
+    }
 }

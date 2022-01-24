@@ -1,22 +1,24 @@
 package com.example.robwarehouse.service;
 
 import com.example.robwarehouse.model.Location;
-import lombok.Data;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
-import java.util.Optional;
 
+@Service
+public interface LocationService extends CrudService<Location> {
 
-public interface LocationService {
-    String createNewLocation(Location newLocation);
+    default Location newObject() {
+        return new Location();
+    }
 
-    //TODO (LOcation location)
-    void editLocation(Long locationId, String locationName);
+    Long create(Location newObject);
 
-    Optional<Location> getById(Long id);
+    void update(Location update);
+
+    Location get(Long id);
+
+    void delete(Long id);
 
     Collection<Location> getAll();
-//TODO getBYID
-    void delete(Location location);
 }

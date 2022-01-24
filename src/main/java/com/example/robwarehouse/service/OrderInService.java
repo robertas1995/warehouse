@@ -7,7 +7,6 @@ import com.example.robwarehouse.model.Supplier;
 import org.springframework.stereotype.Service;
 
 
-
 // jeigu liks laiko pridesiu!!!
 @Service
 public interface OrderInService {

@@ -3,7 +3,6 @@ package com.example.robwarehouse.model;
 import lombok.Data;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 
 @Entity
 @Data
@@ -15,8 +14,8 @@ public class OrderItem {
     @Column(name = "id")
     private Long id;
 
-//    @Column(name = "order_id")
-//    private Long orderId;
+    @Column(name = "order_id", updatable = false, insertable = false)
+    private Long orderId;
 //
 //    @Column(name = "product_id")
 //    private  Long productId;
@@ -28,11 +27,11 @@ public class OrderItem {
     private double price;
 
     @ManyToOne
-    @JoinColumn(name = "order_id",referencedColumnName = "id")
+    @JoinColumn(name = "order_id", referencedColumnName = "id")
     private Order order;
 
     @ManyToOne
-    @JoinColumn(name = "product_id",referencedColumnName = "id")
+    @JoinColumn(name = "product_id", referencedColumnName = "id")
     private Product product;
 
 
@@ -40,7 +39,8 @@ public class OrderItem {
         this.price = productPrice;
         this.quantity = productQuantity;
     }
-    public OrderItem(){
+
+    public OrderItem() {
 
     }
 }

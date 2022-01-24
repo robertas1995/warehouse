@@ -18,6 +18,7 @@
         <th class="tbody_th"> Employee lastname</th>
         <th class="tbody_th"> Order Status</th>
         <th class="tbody_th" colspan="3"> Action </th>
+        <th class="tbody_th"> Change Status</th>
     </tr>
     </thead>
     <tbody>
@@ -30,23 +31,50 @@
         <td class="tbody_td"><span th:text="${order.status}"> Order Status</span></td>
         <td class="tbody_td"><a th:href="@{'/deleteOrder/{id}'(id=${order.id})}" class="btn btn-danger"> Delete</a> </td>
         <td class="tbody_td"><a th:href="@{'/createdOrder/{id}/addItem/'(id=${order.id})}" class="btn btn-primary"> AddItem</a> </td>
-        <td class="tbody_td"><a th:href="@{'/createdOrder/{id}'(id=${order.id})}" class="btn btn-success"> save</a> </td>
+        <td class="tbody_td"><a th:href="@{'/createdOrder/{id}/'(id=${order.id})}" class="btn btn-success"> save</a> </td>
+        <td class="tbody_td">
+        <select name="status" th:field="*{{status}}">
+            <option th:each="status : ${T(com.example.robwarehouse.model.Status).values()}"
+                    th:value="${status}"
+                    th:selected="${status == T(com.example.robwarehouse.model.Status)}"
+                    th:text="${status}"></option>
+        </select>
+        </td>
+
+    </tr>
+    </tbody>
+</table>
+
+<table>
+    <thead>
+    <tr>
+        <th class="tbody_th"> Product name</th>
+        <th class="tbody_th"> Price</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="orderItem : ${items}">
+        <td class="tbody_td"><span th:text="${orderItem.product.name}"> Product Price</span></td>
+        <td class="tbody_td"><span th:text="${orderItem.price}"> Product Price</span></td>
+        <td class="tbody_td"><a th:href="@{'/deleteItem/{id}'(id=${orderItem.id})}" class="btn btn-danger">Del</a>  </td>
+        <td class="tbody_td"><a th:href="@{'/editItem/{id}'(id=${orderItem.id})}" class="btn btn-secondary">Edit</a>  </td>
     </tr>
     </tbody>
 </table>
 
 
-<div class="comments">
-    <h2>List</h2>
-    <div class="comment" th:each="orderItem : ${items}">
-<!--        <h5 th:text="'Commented on ' + ${#dates.format(order.creationDate, 'yyyy-MM-dd')}">Data</h5>-->
-        <p th:text="'Product Name '+${orderItem.product.name}+' Price '+${orderItem.price}+' Quantity '+${orderItem.quantity}">Body</p>
-<!--            <a th:href="@{'/editComment/{id}'(id=comment.id)}">-->
-                <button class="blue-btn" type="button">Edit Comment</button>
-<!--            </a>-->
-        </div>
-    </div>
-</div>
+<!--<div class="comments">-->
+<!--    <h2>List</h2>-->
+<!--    <div class="comment" th:each="orderItem : ${items}">-->
+<!--        -->
+<!--&lt;!&ndash;        <h5 th:text="'Commented on ' + ${#dates.format(order.creationDate, 'yyyy-MM-dd')}">Data</h5>&ndash;&gt;-->
+<!--        <p th:text="'Product Name '+${orderItem.product.name}+' Price '+${orderItem.price}+' Quantity '+${orderItem.quantity}">Body</p>-->
+<!--&lt;!&ndash;            <a th:href="@{'/createdOrder/{id}/addItem/'(id=orderItem.id)}">&ndash;&gt;-->
+<!--                <button class="blue-btn" type="button">Edit Item</button>-->
+<!--&lt;!&ndash;            </a>&ndash;&gt;-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
 <!--<div class="order">-->
 <!--    <h2 th:text="${order.id}">Order ID</h2>-->
 <!--    <p th:text="${order.customer.name}+ ' ' +${order.customer.lastname}">Customer</p>-->

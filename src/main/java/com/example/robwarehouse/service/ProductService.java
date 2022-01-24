@@ -4,20 +4,21 @@ import com.example.robwarehouse.model.Product;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
-import java.util.Optional;
+
 
 @Service
-public interface ProductService {
+public interface ProductService extends CrudService<Product> {
 
 
-    String createNewGoods(Product createdProduct);
+    default Product newObject() {return new Product();}
 
-    void delete(Product product);
+    Long create(Product newObject);
 
+    void update(Product update);
 
-    void editGoods(Long productId, String productName, Double productPrice, String productDescription);
+    Product get(Long id);
 
-    Optional<Product> getById(Long id);
+    void delete(Long id);
 
     Collection<Product> getAll();
 

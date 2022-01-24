@@ -10,7 +10,7 @@
 <div th:replace="/fragments/header :: header"></div>
 
 <div class="products" style="text-align: center">
-    <a href="createNewLocation" class="btn btn-success"> <i class="fa fa-arrow-circle-o-left"></i>New Location</a>
+    <a href="/locations/create" class="btn btn-success"> <i class="fa fa-arrow-circle-o-left"></i>New Location</a>
 
     <table>
         <thead>
@@ -22,11 +22,11 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="location : ${location}">
+        <tr th:each="location : ${objects}">
             <td class="tbody_td"><span th:text="${location.id}"> ID</span> </td>
             <td class="tbody_td"><span th:text="${location.locationName}">Name</span></td>
-            <td class="tbody_td"><a th:href="@{'/location/delete/{id}'(id=${location.id})}" class="btn btn-danger">Delete</a></td>
-            <td class="tbody_td"><a th:href="@{'/location/edit/{id}'(id=${location.id})}" class="btn btn-primary">Edit</a></td>
+            <td class="tbody_td"><a th:href="@{'/locations/delete/{id}'(id=${location.id})}" class="btn btn-danger">Delete</a></td>
+            <td class="tbody_td"><a th:href="@{'/locations/edit/{id}'(id=${location.id})}" class="btn btn-primary">Edit</a></td>
         </tr>
         </tbody>
     </table>

@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
+import java.awt.print.Pageable;
 import java.util.Collection;
 import java.util.Optional;
 
@@ -17,43 +18,51 @@ public class CustomerServiceImpl implements CustomerService {
 
 
     @Override
-    public Long createCustomer(Customer createdCustomer) {
+    public Long create(Customer createdCustomer) {
+
         Customer customer = new Customer();
         customer.setName(createdCustomer.getName());
         customer.setAddress(createdCustomer.getAddress());
         customer.setEmail(createdCustomer.getEmail());
         customer.setTel(createdCustomer.getTel());
         customer.setLastname(createdCustomer.getLastname());
-        customerRepo.save(createdCustomer);
+        customerRepo.save(customer);
+
         return customer.getId();
     }
 
     @Override
-    public Optional<Customer> getById(Long id){
+    public Customer get(Long id) {
 
-       return customerRepo.findById(id);
+        return customerRepo.findById(id).orElseThrow(() -> new EntityNotFoundException("Customer not found"));
     }
+
+
+
+
     @Override
     public Collection<Customer> getAll() {
         return customerRepo.findAll();
     }
-//TODO FIX this (Customer customer)
+
+
     @Override
-    public void editCustomer(Long id, String customerName, String customerLastname, String customerAddress, String customerEmail, String customerTel) {
-        var customer = customerRepo.findById(id).orElseThrow(() -> new EntityNotFoundException("customer not found"));
-        customer.setName(customerName);
-        customer.setLastname(customerLastname);
-        customer.setAddress(customerAddress);
-        customer.setEmail(customerAddress);
-        customer.setTel(customerTel);
+    public void update(Customer update) {
+        Customer customer = customerRepo.findById(update.getId()).orElseThrow(() -> new EntityNotFoundException("Customer not found"));
+        customer.setName(update.getName());
+        customer.setLastname(update.getLastname());
+        customer.setAddress(update.getAddress());
+        customer.setEmail(update.getEmail());
+        customer.setTel(update.getTel());
         customerRepo.save(customer);
+
 
     }
 
 
     @Override
-    public void delete(Customer customer) {
-        customerRepo.delete(customer);
+    public void delete(Long id) {
+        customerRepo.deleteById(id);
     }
 
 

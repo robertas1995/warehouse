@@ -2,6 +2,7 @@ package com.example.robwarehouse.service;
 
 import com.example.robwarehouse.model.Location;
 import com.example.robwarehouse.repository.LocationRepo;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.springframework.stereotype.Service;
 
@@ -10,33 +11,33 @@ import java.util.Collection;
 import java.util.Optional;
 
 @Service
-@Data
+@AllArgsConstructor
 public class LocationServiceImpl implements LocationService{
 
     private final LocationRepo locationRepo;
 
     @Override
-    public String createNewLocation(Location newLocation){
+    public Long create(Location newLocation){
         Location newLoca = new Location();
         newLoca.setLocationName(newLocation.getLocationName());
         locationRepo.save(newLoca);
-     return "redirect:/location/all";
+     return newLoca.getId();
     }
 
     @Override
-    public void editLocation(Long locationId, String locationName){
-        var location = locationRepo.findById(locationId).orElseThrow(()-> new EntityNotFoundException("Location not found"));
-        location.setLocationName(locationName);
-        locationRepo.save(location);
+    public void update(Location update){
+        var editLocation = locationRepo.findById(update.getId()).orElseThrow(()-> new EntityNotFoundException("Location not found"));
+        editLocation.setLocationName(update.getLocationName());
+        locationRepo.save(editLocation);
     }
     @Override
-    public Optional<Location> getById(Long id){ return locationRepo.findById(id);}
+    public Location get(Long id){ return locationRepo.findById(id).orElseThrow(() -> new EntityNotFoundException("Location not found"));}
 
     @Override
     public Collection<Location> getAll(){return locationRepo.findAll();}
 
     @Override
-    public void delete(Location location){locationRepo.delete(location);}
+    public void delete(Long id){locationRepo.deleteById(id);}
 
 
 

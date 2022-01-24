@@ -3,7 +3,6 @@ package com.example.robwarehouse.service;
 import com.example.robwarehouse.model.Supplier;
 import com.example.robwarehouse.repository.SupplierRepo;
 import lombok.AllArgsConstructor;
-import lombok.Data;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
@@ -12,12 +11,12 @@ import java.util.Optional;
 
 @Service
 @AllArgsConstructor
-public class SupplierServiceImpl implements SupplierService{
+public class SupplierServiceImpl implements SupplierService {
 
     private final SupplierRepo supplierRepo;
 
     @Override
-    public String createNewSupplier(Supplier createdSupplier){
+    public String createNewSupplier(Supplier createdSupplier) {
 
         Supplier newSupplier = new Supplier();
         newSupplier.setName(createdSupplier.getName());
@@ -30,18 +29,24 @@ public class SupplierServiceImpl implements SupplierService{
     }
 
     @Override
-    public Optional<Supplier> getById(Long id){return supplierRepo.findById(id);}
+    public Optional<Supplier> getById(Long id) {
+        return supplierRepo.findById(id);
+    }
 
 
     @Override
-    public void delete(Supplier supplier){supplierRepo.delete(supplier);}
+    public void delete(Supplier supplier) {
+        supplierRepo.delete(supplier);
+    }
 
     @Override
-    public Collection<Supplier> getAll(){return supplierRepo.findAll();}
+    public Collection<Supplier> getAll() {
+        return supplierRepo.findAll();
+    }
 
     @Override
-    public void editSupplier(Long supplierId, String supplierName, String supplierEmail, String supplierTel, String supplierAddress){
-        var supplier = supplierRepo.findById(supplierId).orElseThrow(()-> new EntityNotFoundException("supplier not found"));
+    public void editSupplier(Long supplierId, String supplierName, String supplierEmail, String supplierTel, String supplierAddress) {
+        var supplier = supplierRepo.findById(supplierId).orElseThrow(() -> new EntityNotFoundException("supplier not found"));
         supplier.setName(supplierName);
         supplier.setEmail(supplierEmail);
         supplier.setTel(supplierTel);
