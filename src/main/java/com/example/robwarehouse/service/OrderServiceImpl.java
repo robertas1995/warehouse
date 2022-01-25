@@ -2,9 +2,11 @@ package com.example.robwarehouse.service;
 
 import com.example.robwarehouse.model.Order;
 import com.example.robwarehouse.model.OrderItem;
+import com.example.robwarehouse.model.Position;
 import com.example.robwarehouse.model.Status;
 import com.example.robwarehouse.repository.OrderItemRepo;
 import com.example.robwarehouse.repository.OrderRepo;
+import com.example.robwarehouse.repository.PositionRepo;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -18,9 +20,10 @@ import java.util.stream.Collectors;
 public class OrderServiceImpl implements OrderSevice {
 
     private final OrderRepo orderRepo;
-    private final OrderItemService orderItemService;
+    private final PositionService positionService;
     private final OrderItemRepo orderItemRepo;
-    private final ProductService productService;
+    private final PositionRepo positionRepo;
+
 
 
     @Override
@@ -64,6 +67,18 @@ public class OrderServiceImpl implements OrderSevice {
                 .collect(Collectors.summingDouble(Double::doubleValue));
         order.setTotalPrice(allItems);
         orderRepo.getById(orderId).setTotalPrice(allItems);
+       //TODO finish this
+        Integer minusProduct = orderItem.getQuantity();
+        Integer storageItem = positionRepo.getById(orderItem.getProduct().getId()).getQuantity();
+        Integer result = storageItem - minusProduct;
+        if (storageItem < minusProduct){
+            System.out.println("Storage is not enough");
+        }else
+            positionRepo.getById(orderItem.getProduct().getId()).setQuantity(result);
+
+
+
+
 
 
         return orderId;
