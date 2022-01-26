@@ -44,6 +44,7 @@ public class OrderItemServiceImpl implements OrderItemService {
         editItem.setProduct(orderItem.getProduct());
         editItem.setPrice(orderItem.getProduct().getPrice()*orderItem.getQuantity());
         orderItemRepo.save(editItem);
+
         var order = orderRepo.getById(editItem.getOrderId());
         Double allItems = orderItemRepo.findByOrderId(editItem.getOrderId()).stream()
                 .map(x -> x.getPrice())

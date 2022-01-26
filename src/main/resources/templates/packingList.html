@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" type="text/css" th:href="@{/css/main.css}">
+<link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
+<div th:replace="/fragments/header :: header"></div>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<table>
+    <thead>
+    <tr>
+
+        <th class="tbody_th"> OrderId</th>
+        <th class="tbody_th"> Employee name</th>
+        <th class="tbody_th"> Employee lastname</th>
+
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="order : ${order}">
+        <td class="tbody_td"><span th:text="${order.id}"> ID</span></td>
+        <td class="tbody_td"><span th:text="${order.employee.name}"> Employee name</span></td>
+        <td class="tbody_td"><span th:text="${order.employee.surname}"> Employee lastname</span></td>
+    </tr>
+    </tbody>
+</table>
+
+<table>
+    <thead>
+    <tr>
+        <th class="tbody_th"> Product name</th>
+        <th class="tbody_th"> Quantity</th>
+<!--        <th class="tbody_th"> Position</th>-->
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="orderItem : ${items}">
+        <td class="tbody_td"><span th:text="${orderItem.product.name}"> Product Price</span></td>
+        <td class="tbody_td"><span th:text="${orderItem.quantity}"> Product Price</span></td>
+<!--        <td class="tbody_td"><span th:text="${position}"> Position Name</span></td>-->
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

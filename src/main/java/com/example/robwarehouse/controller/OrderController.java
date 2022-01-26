@@ -4,9 +4,9 @@ import com.example.robwarehouse.model.*;
 import com.example.robwarehouse.repository.*;
 import com.example.robwarehouse.service.OrderItemService;
 import com.example.robwarehouse.service.OrderSevice;
+import com.example.robwarehouse.service.PositionService;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -26,6 +26,7 @@ public class OrderController {
     private final CustomerRepo customerRepo;
     private final EmployeeRepo employeeRepo;
     private final OrderItemService orderItemService;
+    private final PositionService positionService;
 
 
     @GetMapping("/createNewOrder")
@@ -90,11 +91,10 @@ public class OrderController {
 
     @PostMapping("/createdOrder/{id}/addItem/")
     public String addItem(@PathVariable Long id,
-                          @ModelAttribute(name = "order") Order order,
                           @ModelAttribute(name = "orderItem") OrderItem orderItem,
                           @ModelAttribute(name = "product") Long productId) {
 
-        orderSevice.addItem(orderItem, id, order);
+        orderSevice.addItem(orderItem, id);
         return "redirect:/createdOrder/" + id;
     }
 
@@ -130,15 +130,31 @@ public class OrderController {
     }
 
 
-    @PatchMapping("/createdOrder/{id}/")
-    public ResponseEntity<Order> updateStatus(@PathVariable Long id,
+
+    @PutMapping("/createdOrder/{id}")
+    public String updateStatus(@PathVariable Long id,
                                               @Valid @RequestBody Order orderDetails) {
         Order order = orderRepo.getById(id);
-
         order.setStatus(orderDetails.getStatus());
-        final Order updatedOrder = orderRepo.save(order);
-        return ResponseEntity.ok(updatedOrder);
+
+
+        return "orderList";
     }
+
+    @GetMapping("/createdOrder/{id}/packingList")
+    public String exportToPDF(@PathVariable Long id, Model model)  {
+        Optional<Order> packingList = this.orderSevice.getById(id);
+        if (packingList.isPresent()) {
+            Order order = packingList.get();
+            model.addAttribute("order", order);
+            var items = orderItemRepo.findByOrderId(id);
+            model.addAttribute("items", items);
+            return "packingList";
+        } else
+            return "redirect:/";
+
+    }
+
 
 
 }

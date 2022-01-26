@@ -16,7 +16,7 @@ public interface OrderSevice {
 
     OrderItem save(OrderItem orderItem);
 
-    Long addItem(OrderItem orderItem, Long id, Order order);
+    void addItem(OrderItem orderItem, Long orderId);
 
     Collection<Order> getAll();
 

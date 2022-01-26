@@ -4,6 +4,7 @@ import com.example.robwarehouse.model.Position;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -20,4 +21,8 @@ public interface PositionService {
 
 
     Collection<Position> getLow();
+
+    List<Position> findByProductId(Long productId);
+
+    void recalculatePositionsForProduct(Long productId, Integer minusProduct);
 }

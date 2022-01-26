@@ -1,5 +1,7 @@
 package com.example.robwarehouse.service;
 
+import com.example.robwarehouse.exception.PositionNotFoundException;
+import com.example.robwarehouse.exception.PositionQuantityNotEnoughException;
 import com.example.robwarehouse.model.Position;
 import com.example.robwarehouse.repository.PositionRepo;
 import lombok.AllArgsConstructor;
@@ -60,6 +62,42 @@ public class PositionServiceImpl implements PositionService {
         return needToOrder;
     }
 
+    @Override
+    public List<Position> findByProductId(Long productId) {
+        return positionRepo.findByProductId(productId);
+    }
+
+
+    @Override
+    public void recalculatePositionsForProduct(Long productId, Integer minusProduct) {
+        List<Position> positions = findPositionsAndCheckNotEmpty(productId);
+
+        Integer storageItem = positions.stream().mapToInt(Position::getQuantity).sum();
+        if (storageItem < minusProduct) {
+            throw new PositionQuantityNotEnoughException("Not enough storage for product: " + productId);
+        }
+
+        for (Position position : positions) {
+            if (minusProduct > 0 && position.getQuantity() > 0) {
+
+                position.setQuantity(position.getQuantity() - minusProduct);
+                if (position.getQuantity() < 0) {
+                    minusProduct = Math.abs(position.getQuantity());
+                    position.setQuantity(0);
+                } else {
+                    minusProduct = 0;
+                }
+                editPosition(position.getId(), position);
+            }
+        }
+    }
+
+    private List<Position> findPositionsAndCheckNotEmpty(Long productId) {
+        List<Position> positions = findByProductId(productId);
+        if (positions == null || positions.isEmpty()) {
+            throw new PositionNotFoundException("By productId: " + productId);
+        }
+        return positions;
+    }
 
 }
-

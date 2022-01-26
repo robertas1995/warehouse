@@ -2,18 +2,17 @@ package com.example.robwarehouse.service;
 
 import com.example.robwarehouse.model.Order;
 import com.example.robwarehouse.model.OrderItem;
-import com.example.robwarehouse.model.Position;
+import com.example.robwarehouse.model.Product;
 import com.example.robwarehouse.model.Status;
 import com.example.robwarehouse.repository.OrderItemRepo;
 import com.example.robwarehouse.repository.OrderRepo;
-import com.example.robwarehouse.repository.PositionRepo;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
@@ -21,8 +20,8 @@ public class OrderServiceImpl implements OrderSevice {
 
     private final OrderRepo orderRepo;
     private final PositionService positionService;
+    private final ProductService productService;
     private final OrderItemRepo orderItemRepo;
-    private final PositionRepo positionRepo;
 
 
 
@@ -53,36 +52,35 @@ public class OrderServiceImpl implements OrderSevice {
 
     @Override
     @Transactional
-    public Long addItem(OrderItem createdOrderItem, Long orderId, Order order) {
+    public void addItem(OrderItem createdOrderItem, Long orderId) {
+        Order order = orderRepo.getById(orderId);
+        Product product = productService.get(createdOrderItem.getProduct().getId());
 
+        createAndStoreNewItem(createdOrderItem, order, product);
 
-        OrderItem orderItem = new OrderItem();
-        orderItem.setOrder(orderRepo.getById(orderId));
-        orderItem.setProduct(createdOrderItem.getProduct());
-        orderItem.setQuantity(createdOrderItem.getQuantity());
-        orderItem.setPrice(createdOrderItem.getProduct().getPrice() * createdOrderItem.getQuantity());
-        orderItemRepo.save(orderItem);
-        Double allItems = orderItemRepo.findByOrderId(orderId).stream()
-                .map(x -> x.getPrice())
-                .collect(Collectors.summingDouble(Double::doubleValue));
-        order.setTotalPrice(allItems);
-        orderRepo.getById(orderId).setTotalPrice(allItems);
-       //TODO finish this
-        Integer minusProduct = orderItem.getQuantity();
-        Integer storageItem = positionRepo.getById(orderItem.getProduct().getId()).getQuantity();
-        Integer result = storageItem - minusProduct;
-        if (storageItem < minusProduct){
-            System.out.println("Storage is not enough");
-        }else
-            positionRepo.getById(orderItem.getProduct().getId()).setQuantity(result);
+        updateOrderTotalPrice(orderId, order);
 
-
-
-
-
-
-        return orderId;
+        positionService.recalculatePositionsForProduct(product.getId(), createdOrderItem.getQuantity());
     }
+
+
+    private void updateOrderTotalPrice(Long orderId, Order order) {
+        List<OrderItem> allOrderItems = orderItemRepo.findByOrderId(orderId);
+        Double allItems = allOrderItems.stream().map(OrderItem::getPrice).mapToDouble(Double::doubleValue).sum();
+        order.setTotalPrice(allItems);
+        orderRepo.save(order);
+    }
+
+    private OrderItem createAndStoreNewItem(OrderItem createdOrderItem, Order order, Product product) {
+        OrderItem orderItem = new OrderItem();
+        orderItem.setOrder(order);
+        orderItem.setProduct(product);
+        orderItem.setQuantity(createdOrderItem.getQuantity());
+        orderItem.setPrice(createdOrderItem.getProduct().getPrice() * (double) createdOrderItem.getQuantity());
+        orderItemRepo.save(orderItem);
+        return orderItem;
+    }
+
 
     @Override
     public Collection<Order> getAll() {

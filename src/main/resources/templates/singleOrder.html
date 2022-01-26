@@ -29,7 +29,7 @@
         <td class="tbody_td"><span th:text="${order.employee.name}"> Employee name</span></td>
         <td class="tbody_td"><span th:text="${order.employee.surname}"> Employee lastname</span></td>
         <td class="tbody_td"><span th:text="${order.status}"> Order Status</span></td>
-        <td class="tbody_td"><a th:href="@{'/deleteOrder/{id}'(id=${order.id})}" class="btn btn-danger"> Delete</a> </td>
+        <td class="tbody_td"><a th:href="@{'/createdOrder/{id}/cancel'(id=${order.id})}" class="btn btn-danger"> Cancel</a> </td>
         <td class="tbody_td"><a th:href="@{'/createdOrder/{id}/addItem/'(id=${order.id})}" class="btn btn-primary"> AddItem</a> </td>
         <td class="tbody_td"><a th:href="@{'/createdOrder/{id}/'(id=${order.id})}" class="btn btn-success"> save</a> </td>
         <td class="tbody_td">
@@ -62,25 +62,5 @@
     </tbody>
 </table>
 
-
-<!--<div class="comments">-->
-<!--    <h2>List</h2>-->
-<!--    <div class="comment" th:each="orderItem : ${items}">-->
-<!--        -->
-<!--&lt;!&ndash;        <h5 th:text="'Commented on ' + ${#dates.format(order.creationDate, 'yyyy-MM-dd')}">Data</h5>&ndash;&gt;-->
-<!--        <p th:text="'Product Name '+${orderItem.product.name}+' Price '+${orderItem.price}+' Quantity '+${orderItem.quantity}">Body</p>-->
-<!--&lt;!&ndash;            <a th:href="@{'/createdOrder/{id}/addItem/'(id=orderItem.id)}">&ndash;&gt;-->
-<!--                <button class="blue-btn" type="button">Edit Item</button>-->
-<!--&lt;!&ndash;            </a>&ndash;&gt;-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</div>-->
-<!--<div class="order">-->
-<!--    <h2 th:text="${order.id}">Order ID</h2>-->
-<!--    <p th:text="${order.customer.name}+ ' ' +${order.customer.lastname}">Customer</p>-->
-<!--    <p th:text="${order.creationDate}">Creation Date</p>-->
-<!--    <p th:text="${order.employee.name}+ ' ' +${order.employee.surname}">Worker</p>-->
-<!--    <p th:text="${order.getOrderItems}">Products</p>-->
-<!--</div>-->
 </body>
 </html>
