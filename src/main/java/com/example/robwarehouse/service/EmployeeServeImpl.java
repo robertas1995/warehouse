@@ -41,7 +41,7 @@ public class EmployeeServeImpl implements EmployeeService {
         editedEmployee.setAddress(editedEmployee.getAddress());
         editedEmployee.setUsername(editedEmployee.getUsername());
         editedEmployee.setRole(editedEmployee.getRole());
-        employeeRepo.save(editedEmployee);
+        employeeRepo.save(update);
     }
 
     @Override

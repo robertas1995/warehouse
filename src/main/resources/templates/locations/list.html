@@ -9,7 +9,11 @@
 <body>
 <div th:replace="/fragments/header :: header"></div>
 
-<div class="products" style="text-align: center">
+<div class="container">
+
+    <div class="linkName">
+        <h2>Location list</h2>
+    </div>
     <a href="/locations/create" class="btn btn-success"> <i class="fa fa-arrow-circle-o-left"></i>New Location</a>
 
     <table>
@@ -17,7 +21,7 @@
         <tr>
             <th class="tbody_th">  ID</th>
             <th class="tbody_th">  Name</th>
-            <th class="tbody_th "></th>
+            <th class="tbody_th" colspan="3"> Action </th>
 
         </tr>
         </thead>
@@ -27,6 +31,7 @@
             <td class="tbody_td"><span th:text="${location.locationName}">Name</span></td>
             <td class="tbody_td"><a th:href="@{'/locations/delete/{id}'(id=${location.id})}" class="btn btn-danger">Delete</a></td>
             <td class="tbody_td"><a th:href="@{'/locations/edit/{id}'(id=${location.id})}" class="btn btn-primary">Edit</a></td>
+            <td class="tbody_td"><a th:href="@{'/locations/{id}'(id=${location.id})}" class="btn btn-success"> View</a> </td>
         </tr>
         </tbody>
     </table>

@@ -25,4 +25,6 @@ public interface PositionService {
     List<Position> findByProductId(Long productId);
 
     void recalculatePositionsForProduct(Long productId, Integer minusProduct);
+
+    void recalculatePositionsAndReturn(Long productId, Integer minusProduct);
 }

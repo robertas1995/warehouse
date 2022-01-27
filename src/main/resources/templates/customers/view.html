@@ -11,13 +11,18 @@
 
 
 <div class="container" style="text-align: center">
+    <div class="linkName">
+        <h2>Customer</h2>
+    </div>
     <div class="customer">
         <h2 th:text="${object.name}+' '+${object.lastname}">Name</h2>
         <p th:text="${object.address}">Address</p>
         <p th:text="${object.tel}">Phone</p>
         <p th:text="${object.email}">Email</p>
 
-<!--        <a th:href="@{'/customers/edit/{id}' (id=${customer.id})}" class="btn btn-primary">Edit</a>-->
+        <a th:href="@{'/customers/edit/{id}'(id=${object.id})}" class="btn btn-primary">Edit</a>
+        <a th:href="@{'/customers/list'}" class="btn btn-success">Customer list</a>
+
 
     </div>
 </div>

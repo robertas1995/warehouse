@@ -10,8 +10,15 @@
 <body>
 <div th:replace="/fragments/header :: header"></div>
 
-<div class="products" style="text-align: center">
+<div class="container">
+
+    <div class="linkName">
+        <h2>Customer list</h2>
+    </div>
+
 <a href="/customers/create" class="btn btn-success"> <i class="fa fa-arrow-circle-o-left"></i>New customer</a>
+
+
 
 <table>
     <thead>
@@ -36,6 +43,7 @@
         <td class="tbody_td"><span th:text="${customers.tel}">Phone</span></td>
         <td class="tbody_td"><a th:href="@{'/customers/delete/{id}'(id=${customers.id})}" class="btn btn-danger">Delete</a></td>
         <td class="tbody_td"><a th:href="@{'/customers/edit/{id}'(id=${customers.id})}" class="btn btn-primary">Edit</a></td>
+        <td class="tbody_td"><a th:href="@{'/customers/{id}'(id=${customers.id})}" class="btn btn-primary">View</a></td>
     </tr>
     </tbody>
 </table>

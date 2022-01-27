@@ -10,6 +10,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.time.LocalDate;
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
@@ -64,7 +65,7 @@ public class OrderServiceImpl implements OrderSevice {
     }
 
 
-    private void updateOrderTotalPrice(Long orderId, Order order) {
+    public void updateOrderTotalPrice(Long orderId, Order order) {
         List<OrderItem> allOrderItems = orderItemRepo.findByOrderId(orderId);
         Double allItems = allOrderItems.stream().map(OrderItem::getPrice).mapToDouble(Double::doubleValue).sum();
         order.setTotalPrice(allItems);
@@ -85,6 +86,19 @@ public class OrderServiceImpl implements OrderSevice {
     @Override
     public Collection<Order> getAll() {
         return orderRepo.findAll();
+    }
+
+    @Override
+    public Long editOrder(Long id, Order editOrder) {
+        Order order = orderRepo.getById(id);
+        order.setStatus(editOrder.getStatus());
+        order.setTotalPrice(editOrder.getTotalPrice());
+        order.setCreationDate(LocalDate.now());
+        order.setEmployee(editOrder.getEmployee());
+        order.setCustomer(editOrder.getCustomer());
+        orderRepo.save(order);
+        return order.getId();
+
     }
 
 

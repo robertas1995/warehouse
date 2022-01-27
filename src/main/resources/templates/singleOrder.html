@@ -5,9 +5,11 @@
 <div th:replace="/fragments/header :: header"></div>
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Order</title>
 </head>
 <body>
+<form action="#"
+      >
 <table>
     <thead>
     <tr>
@@ -17,8 +19,9 @@
         <th class="tbody_th"> Employee name</th>
         <th class="tbody_th"> Employee lastname</th>
         <th class="tbody_th"> Order Status</th>
+        <th class="tbody_th"> Price</th>
         <th class="tbody_th" colspan="3"> Action </th>
-        <th class="tbody_th"> Change Status</th>
+
     </tr>
     </thead>
     <tbody>
@@ -29,17 +32,10 @@
         <td class="tbody_td"><span th:text="${order.employee.name}"> Employee name</span></td>
         <td class="tbody_td"><span th:text="${order.employee.surname}"> Employee lastname</span></td>
         <td class="tbody_td"><span th:text="${order.status}"> Order Status</span></td>
-        <td class="tbody_td"><a th:href="@{'/createdOrder/{id}/cancel'(id=${order.id})}" class="btn btn-danger"> Cancel</a> </td>
+        <td class="tbody_td"><span th:text="${order.totalPrice}"> Total Price </span></td>
         <td class="tbody_td"><a th:href="@{'/createdOrder/{id}/addItem/'(id=${order.id})}" class="btn btn-primary"> AddItem</a> </td>
-        <td class="tbody_td"><a th:href="@{'/createdOrder/{id}/'(id=${order.id})}" class="btn btn-success"> save</a> </td>
-        <td class="tbody_td">
-        <select name="status" th:field="*{{status}}">
-            <option th:each="status : ${T(com.example.robwarehouse.model.Status).values()}"
-                    th:value="${status}"
-                    th:selected="${status == T(com.example.robwarehouse.model.Status)}"
-                    th:text="${status}"></option>
-        </select>
-        </td>
+        <td class="tbody_td"><a th:href="@{'/createdOrder/{id}/packingList'(id=${order.id})}" class="btn btn-success"> Packing List</a> </td>
+        <td class="tbody_td"><a th:href="@{'/editOrder/{id}'(id=${order.id})}" class="btn btn-success"> Change status</a></td>
 
     </tr>
     </tbody>
@@ -50,17 +46,21 @@
     <tr>
         <th class="tbody_th"> Product name</th>
         <th class="tbody_th"> Price</th>
+        <th class="tbody_th"> Quantity</th>
+        <th class="tbody_th" colspan="2"> Action button</th>
     </tr>
     </thead>
     <tbody>
     <tr th:each="orderItem : ${items}">
-        <td class="tbody_td"><span th:text="${orderItem.product.name}"> Product Price</span></td>
-        <td class="tbody_td"><span th:text="${orderItem.price}"> Product Price</span></td>
+        <td class="tbody_td"><span th:text="${orderItem.product.name}"> Name</span></td>
+        <td class="tbody_td"><span th:text="${orderItem.price}">  Price</span></td>
+        <td class="tbody_td"><span th:text="${orderItem.quantity}"> Quantity</span></td>
         <td class="tbody_td"><a th:href="@{'/deleteItem/{id}'(id=${orderItem.id})}" class="btn btn-danger">Del</a>  </td>
         <td class="tbody_td"><a th:href="@{'/editItem/{id}'(id=${orderItem.id})}" class="btn btn-secondary">Edit</a>  </td>
     </tr>
     </tbody>
 </table>
 
+</form>
 </body>
 </html>

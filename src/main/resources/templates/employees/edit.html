@@ -11,6 +11,9 @@
 
 
 <div class="container">
+    <div class="linkName">
+        <h2>Edit employee</h2>
+    </div>
     <form th:action="'/employees/edit/'+${id}"
           th:object="${editObject}"
           method="post">

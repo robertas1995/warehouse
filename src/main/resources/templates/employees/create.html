@@ -8,9 +8,11 @@
 
 
 <div th:replace="/fragments/header :: header"></div>
-<div class="employee" th:class="align-center">
+<div class="container">
 
-<h2>Register new Employee</h2>
+    <div class="linkName">
+        <h2>Create new employee</h2>
+    </div>
 
 <form action="#"
       th:action="@{'/employees/create'}"

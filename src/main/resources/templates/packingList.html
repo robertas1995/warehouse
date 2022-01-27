@@ -32,14 +32,13 @@
     <tr>
         <th class="tbody_th"> Product name</th>
         <th class="tbody_th"> Quantity</th>
-<!--        <th class="tbody_th"> Position</th>-->
+
     </tr>
     </thead>
     <tbody>
     <tr th:each="orderItem : ${items}">
         <td class="tbody_td"><span th:text="${orderItem.product.name}"> Product Price</span></td>
         <td class="tbody_td"><span th:text="${orderItem.quantity}"> Product Price</span></td>
-<!--        <td class="tbody_td"><span th:text="${position}"> Position Name</span></td>-->
     </tr>
     </tbody>
 </table>

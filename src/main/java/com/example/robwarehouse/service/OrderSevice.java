@@ -20,5 +20,5 @@ public interface OrderSevice {
 
     Collection<Order> getAll();
 
-
+    Long editOrder(Long id, Order editOrder);
 }

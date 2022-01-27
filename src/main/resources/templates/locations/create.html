@@ -5,8 +5,12 @@
 <link rel="stylesheet" type="text/css" th:href="@{/css/main.css}">
 <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
 <body>
+<div th:replace="/fragments/header :: header"></div>
 
 <div class="container">
+    <div class="linkName">
+        <h2>Create location</h2>
+    </div>
     <form th:action="@{'/locations/create'}"
           th:object="${newObject}"
           method="post">
@@ -21,6 +25,6 @@
     </form>
 </div>
 
-
+<footer th:replace="/fragments/footer :: footer"></footer>
 </body>
 </html>

@@ -7,6 +7,8 @@ import com.example.robwarehouse.service.OrderSevice;
 import com.example.robwarehouse.service.PositionService;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -45,6 +47,28 @@ public class OrderController {
         return "orderForm";
 
     }
+    @GetMapping("/editOrder/{id}")
+    public String editOrder(@PathVariable Long id, Model model){
+        var order = orderSevice.getById(id);
+        if (order.isPresent()){
+            model.addAttribute("editOrder", order.get());
+            List<Employee>employee = employeeRepo.findAll();
+            model.addAttribute("employees", employee);
+            List<Customer> customers = customerRepo.findAll();
+            model.addAttribute("customers", customers);
+            Set<Status> allStatus = EnumSet.allOf(Status.class);
+            model.addAttribute("status", allStatus);
+
+        }
+        return "editOrder";
+    }
+    @PostMapping("/editOrder/{id}")
+    public String editOrder(@PathVariable Long id, @ModelAttribute Order order ){
+
+        orderSevice.editOrder(id,order);
+
+        return "redirect:/createdOrder/" + order.getId() ;
+    }
 
     @GetMapping("/createdOrder/{id}/addItem/")
     public String addItems(
@@ -53,6 +77,8 @@ public class OrderController {
         Order order = orderSevice.getById(id).orElseThrow();
         model.addAttribute("order", order);
         OrderItem orderItems = new OrderItem();
+        orderItems.setOrderId(order.getId());
+        orderItem.setOrder(order);
         model.addAttribute("orderItem", orderItems);
         List<Product> product = productRepo.findAll();
         model.addAttribute("products", product);
@@ -79,7 +105,6 @@ public class OrderController {
         }
         return "editItem";
     }
-    //TODO need to fix this
 
     @PostMapping("/editItem/{id}")
     public String editItem(@PathVariable Long id,
@@ -131,14 +156,15 @@ public class OrderController {
 
 
 
-    @PutMapping("/createdOrder/{id}")
-    public String updateStatus(@PathVariable Long id,
-                                              @Valid @RequestBody Order orderDetails) {
-        Order order = orderRepo.getById(id);
-        order.setStatus(orderDetails.getStatus());
-
-
-        return "orderList";
+    @PatchMapping("/createdOrder/{id}/{status}")
+    public ResponseEntity<Order> updateOrderPartially(@PathVariable Long id, @PathVariable Status status) {
+        try {
+            Order order = orderRepo.findById(id).get();
+            order.setStatus(status);
+            return new ResponseEntity<Order>(orderRepo.save(order), HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @GetMapping("/createdOrder/{id}/packingList")
@@ -154,6 +180,7 @@ public class OrderController {
             return "redirect:/";
 
     }
+
 
 
 

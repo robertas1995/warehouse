@@ -8,9 +8,11 @@
 
 <div th:replace="/fragments/header :: header"></div>
 
-<div class="container" th:class="align-center">
+<div class="container">
 
-    <h2>Register new Client</h2>
+    <div class="linkName">
+        <h2>Create new client</h2>
+    </div>
 
     <form action="#"
           th:action="@{'/customers/create'}"
@@ -53,7 +55,7 @@
     </form>
 </div>
 
-<!--<footer th:replace="/fragments/footer :: footer"></footer>-->
+<footer th:replace="/fragments/footer :: footer"></footer>
 
 </body>
 </html>

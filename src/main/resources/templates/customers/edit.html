@@ -11,6 +11,10 @@
 
 
 <div class="container">
+<div class="linkName">
+    <h2>Edit Customer</h2>
+</div>
+
     <form th:action="'/customers/edit/'+${id}"
           th:object="${editObject}"
           method="post">

@@ -10,10 +10,16 @@
 <div th:replace="/fragments/header :: header"></div>
 
 
-<div class="container" style="text-align: center">
+<div class="container" >
+    <div class="linkName">
+        <h2>Location</h2>
+    </div>
     <div class="location">
         <h2 th:text="${object.locationName}">Name</h2>
         <p th:text="${object.id}">Price</p>
+
+        <a th:href="@{'/locations/edit/{id}'(id=${object.id})}" class="btn btn-primary">Edit</a>
+        <a th:href="@{'/locations/list'}" class="btn btn-success">Location list</a>
 
 
     </div>

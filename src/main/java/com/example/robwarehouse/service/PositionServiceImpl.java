@@ -91,6 +91,21 @@ public class PositionServiceImpl implements PositionService {
             }
         }
     }
+    @Override
+    public void recalculatePositionsAndReturn(Long productId, Integer minusProduct) {
+        List<Position> positions = findPositionsAndCheckNotEmpty(productId);
+
+
+        for (Position position : positions) {
+            if (minusProduct > 0) {
+
+                position.setQuantity(position.getQuantity() + minusProduct);
+
+                editPosition(position.getId(), position);
+            }
+            break;
+        }
+    }
 
     private List<Position> findPositionsAndCheckNotEmpty(Long productId) {
         List<Position> positions = findByProductId(productId);
