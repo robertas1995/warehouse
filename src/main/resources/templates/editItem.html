@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-<link rel="stylesheet" type="text/css" th:href="@{/css/main.css}">
 <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
+<link rel="stylesheet" type="text/css" th:href="@{/css/main.css}">
 <head>
     <meta charset="UTF-8">
     <title>Add Items</title>
@@ -12,6 +12,9 @@
 <div class="container">
     <form th:action="'/editItem/'+${id} "
           method="post">
+        <div class="linkName">
+            <h2>Edit Item</h2>
+        </div>
 
 
         <div class="form-group blu-margin">
@@ -26,15 +29,14 @@
         <input type="hidden" th:field="*{editItem.orderId}">
         <div>
             <label>
-
                 <input type="number" th:field="*{editItem.quantity}" placeholder="Quantity"/>
             </label>
         </div>
-        <div>
-            <button type="submit">Confirm</button>
+        <div >
+            <button class="btn btn-primary" type="submit">Confirm</button>
         </div>
     </form>
 </div>
-
+<footer th:replace="/fragments/footer :: footer"></footer>
 </body>
 </html>

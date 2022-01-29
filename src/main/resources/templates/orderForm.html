@@ -3,19 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <title>new order</title>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/main.css}">
     <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/main.css}">
     <div th:replace="/fragments/header :: header"></div>
 </head>
 <body>
+
+<div class="container">
 
 <form action="#"
       th:action="@{/createNewOrder}"
       th:object="${orderItems}"
       method="post">
 
+    <div class="linkName">
+        <h2>Create new order</h2>
+    </div>
 
-<div class="col-lg-3" >
+
+<div class="form-group blu-margin" >
     <select class="form-control" th:field="${order.customer.id}"  id="customers">
         <option value="0">select Customer</option>
         <option th:each="customer : ${customers}"
@@ -23,7 +29,7 @@
                 th:text="${customer.name}+' '+${customer.lastname}"></option>
     </select>
 </div>
-<div class="col-lg-3" >
+<div class="form-group blu-margin" >
     <select class="form-control" th:field="${order.employee.id}" id="employeeOrder" name="employees">
         <option value="">Select Employee</option>
         <option th:each="employee : ${employees}"
@@ -31,32 +37,12 @@
                 th:text="${employee.name}+'  '+${employee.surname}"></option>
     </select>
 </div>
-
-<div  class="items">
-        <table>
-            <thead>
-            <tr>
-                <th> Product Id</th>
-                <th> Product price</th>
-                <th> Name </th>
-                <th> Quantity </th>
-                <th> Action</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:each="item : ${items}">
-                <td><span th:text="${item.id}"> ID</span> </td>
-                <td><span th:text="${item.price}">Price</span></td>
-                <td><span th:text="${item.name}">Name</span></td>
-                <td><input name="quantity" type="number"></td>
-                <td> <button type="submit"> Add</button> </td>
-            </tr>
-            </tbody>
-        </table>
         <div>
-            <button type="submit">Add item</button>
+            <button class="btn btn-success" type="submit">Create</button>
         </div>
-</div>
+
 </form>
+    <footer th:replace="/fragments/footer :: footer"></footer>
+</div>
 </body>
 </html>

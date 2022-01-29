@@ -1,28 +1,26 @@
 table{
     text-align: center;
-    border: 2px solid black;
     border-collapse: collapse;
     border-spacing: 4px;
     margin-left: 15%;
     margin-right: 15%;
     margin-top: 5%;
     width: 70%;
+
 }
 
 .table_body, .tbody_td, .tbody_th
-{ border: 1px solid black; }
+{ border: 1px solid #efefef; }
 .table_body  { border-collapse: collapse; }
 
+
 .btn{
-    margin-top: 5%;
+    margin: 4%;
 }
 .employee{
     text-align: center;
 }
-.form-control{
 
-    width:0px;
-}
 footer{
     margin-top: 200px;
 }
@@ -43,3 +41,78 @@ footer{
     margin-left: auto;
     margin-right: auto;
 }
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #0a1821;
+    height: 100vh;
+    width: 100vw;
+    font-family: Roboto, Arial, sans-serif;
+    color: #fff;
+    text-align: center;
+}
+.not-found {
+    width: 560px;
+    height: 225px;
+    margin-right: -10px;
+}
+.starry-sky {
+    display: block;
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+}
+.search-icon {
+    display: inline-block;
+}
+.notfound-copy {
+    color: #fff;
+    position: fixed;
+    top: 25px;
+    right: 10%;
+    text-align: right;
+}
+h1 {
+    font-weight: 700;
+    font-size: 40px;
+}
+a {
+    font-weight: 300;
+    color: #fff;
+    border-bottom: 1.5px solid #5581d4;
+    text-decoration: none;
+}
+a:hover {
+    font-weight: 300;
+    color: #fff;
+    border-bottom: 2px solid #fff;
+    text-decoration: none;
+}
+/* change to alternating star opacities */
+.all-stars {
+    animation: blinkblink 7s linear infinite;
+}
+
+@keyframes blinkblink {
+    50% { opacity: 0.1; }
+}
+.moon {
+}
+input[type=text] {
+    color: #fff;
+    background-color: #0a1821;
+    padding:5px;
+    border: none;
+    border-bottom:2px solid #ccc;
+    font-size: 18px;
+}
+input[type=text]:focus {
+    border-color:navajowhite;
+    border-bottom:2px solid #ccc;
+}
+img{
+    width: 1500px;
+    height: 1000px;
+}
+

@@ -2,6 +2,7 @@ package com.example.robwarehouse.service;
 
 import com.example.robwarehouse.model.Order;
 import com.example.robwarehouse.model.OrderItem;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
@@ -21,4 +22,6 @@ public interface OrderSevice {
     Collection<Order> getAll();
 
     Long editOrder(Long id, Order editOrder);
+
+    Page<Order> getAllOrdersPageable(int pageNumber, int pageSize);
 }

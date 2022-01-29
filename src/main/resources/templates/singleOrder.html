@@ -1,15 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
-<link rel="stylesheet" type="text/css" th:href="@{/css/main.css}">
 <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
+<link rel="stylesheet" type="text/css" th:href="@{/css/main.css}">
 <div th:replace="/fragments/header :: header"></div>
 <head>
     <meta charset="UTF-8">
     <title>Order</title>
 </head>
 <body>
+<div class="container">
 <form action="#"
       >
+
+    <div class="linkName">
+        <h2>Order</h2>
+    </div>
 <table>
     <thead>
     <tr>
@@ -41,6 +46,10 @@
     </tbody>
 </table>
 
+    <div class="linkName" style="margin-top: 20px">
+        <h2>Ordered items list</h2>
+    </div>
+
 <table>
     <thead>
     <tr>
@@ -62,5 +71,7 @@
 </table>
 
 </form>
+</div>
+<footer th:replace="/fragments/footer :: footer"></footer>
 </body>
 </html>

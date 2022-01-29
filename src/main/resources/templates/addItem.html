@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-<link rel="stylesheet" type="text/css" th:href="@{/css/main.css}">
 <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
+
 <head>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/main.css}">
     <meta charset="UTF-8">
     <title>Add Items</title>
     <div th:replace="/fragments/header :: header"></div>
@@ -12,11 +13,14 @@
 <div class="container">
     <form th:action="'/createdOrder/'+${id}+'/addItem/' "
           method="post">
+        <div class="linkName">
+            <h2>Add item to order</h2>
+        </div>
 
 
        <div class="form-group blu-margin">
             <select class="form-control" th:field="${orderItem.product}" id="locations">
-                <option value="0">select operator</option>
+                <option value="0">select product</option>
                 <option th:each="product : ${products}"
                         th:value="${product.id}"
                         th:text="${product.name}+' '+${product.price}"></option>
@@ -30,29 +34,12 @@
                 <input type="number" th:field="*{orderItem.quantity}" placeholder="Quantity"/>
             </label>
         </div>
-<!--        <div>-->
-<!--            <label>-->
 
-<!--                <input type="text" th:field="*{orderItem.product}" placeholder="ProductID"/>-->
-<!--            </label>-->
-<!--        </div>-->
-<!--        <div>-->
-<!--            <label>-->
-
-<!--                <input type="text" th:field="*{orderItem.price}" placeholder="Price"/>-->
-<!--            </label>-->
-<!--        </div>-->
-<!--        <div>-->
-<!--            <label>-->
-
-<!--                <input type="text" th:field="*{orderItem.order.id}" placeholder="OrderId"/>-->
-<!--            </label>-->
-<!--        </div>-->
         <div>
-            <button type="submit">Confirm</button>
+            <button class="btn btn-primary" type="submit">Confirm</button>
         </div>
     </form>
 </div>
-
+<footer th:replace="/fragments/footer :: footer"></footer>
 </body>
 </html>

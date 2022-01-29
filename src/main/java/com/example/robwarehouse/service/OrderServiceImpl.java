@@ -7,6 +7,10 @@ import com.example.robwarehouse.model.Status;
 import com.example.robwarehouse.repository.OrderItemRepo;
 import com.example.robwarehouse.repository.OrderRepo;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -19,11 +23,12 @@ import java.util.Optional;
 @AllArgsConstructor
 public class OrderServiceImpl implements OrderSevice {
 
+
+
     private final OrderRepo orderRepo;
     private final PositionService positionService;
     private final ProductService productService;
     private final OrderItemRepo orderItemRepo;
-
 
 
     @Override
@@ -92,7 +97,6 @@ public class OrderServiceImpl implements OrderSevice {
     public Long editOrder(Long id, Order editOrder) {
         Order order = orderRepo.getById(id);
         order.setStatus(editOrder.getStatus());
-        order.setTotalPrice(editOrder.getTotalPrice());
         order.setCreationDate(LocalDate.now());
         order.setEmployee(editOrder.getEmployee());
         order.setCustomer(editOrder.getCustomer());
@@ -101,6 +105,13 @@ public class OrderServiceImpl implements OrderSevice {
 
     }
 
+
+    @Override
+    public Page<Order> getAllOrdersPageable(int pageNumber, int pageSize) {
+        Pageable page = PageRequest.of(pageNumber, pageSize, Sort.by(Sort.Direction.DESC, "id"));
+        return orderRepo.findAll(page);
+
+    }
 
 }
 

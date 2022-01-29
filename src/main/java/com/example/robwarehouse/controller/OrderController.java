@@ -1,5 +1,6 @@
 package com.example.robwarehouse.controller;
 
+import com.example.robwarehouse.exception.PositionQuantityNotEnoughException;
 import com.example.robwarehouse.model.*;
 import com.example.robwarehouse.repository.*;
 import com.example.robwarehouse.service.OrderItemService;
@@ -95,20 +96,34 @@ public class OrderController {
     }
 
     @GetMapping("/editItem/{id}")
-    public String editItem(@PathVariable Long id, Model model) {
+    public String editItem(@PathVariable Long id, Model model,PositionQuantityNotEnoughException error) {
         model.addAttribute("orderItemId", id);
+
         var orderItem = orderItemService.getById(id);
         if (orderItem.isPresent()) {
             model.addAttribute("editItem", orderItem.get());
             List<Product> product = productRepo.findAll();
             model.addAttribute("products", product);
+            model.addAttribute("error", error);
+
         }
         return "editItem";
+
+    }
+    @ExceptionHandler (PositionQuantityNotEnoughException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public ResponseEntity<String> positionQuantityNotEnoughException (
+            PositionQuantityNotEnoughException exception
+    ) {
+        return ResponseEntity
+                .status(HttpStatus.NOT_FOUND)
+                .body(exception.getMessage());
     }
 
     @PostMapping("/editItem/{id}")
     public String editItem(@PathVariable Long id,
                            @ModelAttribute OrderItem orderItem) {
+
         orderItemService.editItem(id, orderItem);
 
         return "redirect:/orderList";
