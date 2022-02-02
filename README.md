@@ -21,3 +21,7 @@ Change db.name property to match your preferred database name DB_NAME
 2. Modify MySQL username and password
 Open src/main/resources/application.properties file
 Change spring.datasource.username and spring.datasource.password properties to match your MySQL connection
+
+for login add:
+spring.security.user.name=username
+spring.security.user.password=password
