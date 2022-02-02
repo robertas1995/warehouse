@@ -25,3 +25,5 @@ Change spring.datasource.username and spring.datasource.password properties to m
 for login add:
 spring.security.user.name=username
 spring.security.user.password=password
+
+## Thats it Folks!
