@@ -15,7 +15,7 @@ Domain model is organized under the model package and it consists of entity clas
 CREATE DATABASE warehouse;
 In case you want to use a different database name, follow the next steps:
 
-CREATE DATABASE DB_NAME;
+# CREATE DATABASE DB_NAME;
 Open src/main/resources/application.properties file
 Change db.name property to match your preferred database name DB_NAME
 2. Modify MySQL username and password
