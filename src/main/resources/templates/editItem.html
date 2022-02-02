@@ -29,6 +29,7 @@
         <input type="hidden" th:field="*{editItem.orderId}">
         <div>
             <label>
+                <div class="alert-danger" th:if="${quantityError}"> Not enough quantity in storage </div>
                 <input type="number" th:field="*{editItem.quantity}" placeholder="Quantity"/>
             </label>
         </div>

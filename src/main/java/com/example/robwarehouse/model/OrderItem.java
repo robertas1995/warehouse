@@ -3,6 +3,7 @@ package com.example.robwarehouse.model;
 import lombok.Data;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Data
@@ -16,11 +17,9 @@ public class OrderItem {
 
     @Column(name = "order_id", updatable = false, insertable = false)
     private Long orderId;
-//
-//    @Column(name = "product_id")
-//    private  Long productId;
 
     @Column(name = "quantity")
+    @NotNull()
     private Integer quantity;
 
     @Column(name = "price")

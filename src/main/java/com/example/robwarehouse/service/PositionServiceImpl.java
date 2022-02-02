@@ -92,6 +92,13 @@ public class PositionServiceImpl implements PositionService {
         }
     }
     @Override
+    public boolean quantityIsEnough(Long productId, Integer minusProduct){
+        List<Position> positions = findPositionsAndCheckNotEmpty(productId);
+
+        Integer storageItem = positions.stream().mapToInt(Position::getQuantity).sum();
+        return storageItem >= minusProduct;
+    }
+    @Override
     public void recalculatePositionsAndReturn(Long productId, Integer minusProduct) {
         List<Position> positions = findPositionsAndCheckNotEmpty(productId);
 

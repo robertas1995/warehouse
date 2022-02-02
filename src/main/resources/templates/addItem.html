@@ -31,6 +31,7 @@
         <div>
             <label>
 
+                <div class="alert-danger" th:if="${quantityError}"> Not enough quantity in storage </div>
                 <input type="number" th:field="*{orderItem.quantity}" placeholder="Quantity"/>
             </label>
         </div>

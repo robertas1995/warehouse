@@ -26,5 +26,7 @@ public interface PositionService {
 
     void recalculatePositionsForProduct(Long productId, Integer minusProduct);
 
+    boolean quantityIsEnough(Long productId, Integer minusProduct);
+
     void recalculatePositionsAndReturn(Long productId, Integer minusProduct);
 }

@@ -9,12 +9,16 @@
 
 
 
-<h2>Register new Position</h2>
+
 
 <form action="#"
       th:action="@{/positions/createNewPosition}"
       th:object="${position}"
       method="post">
+    <div class="container">
+        <div class="linkName">
+            <h2>Create new position</h2>
+        </div>
     <div class="form-group blu-margin">
         <select class="form-control" th:field="${position.location.id}"  id="locations">
             <option value="0">select operator</option>

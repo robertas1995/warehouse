@@ -104,26 +104,24 @@ public class OrderController {
             model.addAttribute("editItem", orderItem.get());
             List<Product> product = productRepo.findAll();
             model.addAttribute("products", product);
-            model.addAttribute("error", error);
 
         }
         return "editItem";
 
     }
-    @ExceptionHandler (PositionQuantityNotEnoughException.class)
-    @ResponseStatus(HttpStatus.NOT_FOUND)
-    public ResponseEntity<String> positionQuantityNotEnoughException (
-            PositionQuantityNotEnoughException exception
-    ) {
-        return ResponseEntity
-                .status(HttpStatus.NOT_FOUND)
-                .body(exception.getMessage());
-    }
+
 
     @PostMapping("/editItem/{id}")
-    public String editItem(@PathVariable Long id,
-                           @ModelAttribute OrderItem orderItem) {
-
+    public String editItem( @PathVariable Long id,
+                           @Valid @ModelAttribute OrderItem orderItem,
+                           Model model) {
+if (!positionService.quantityIsEnough(orderItem.getProduct().getId(), orderItem.getQuantity())){
+    model.addAttribute("quantityError", true);
+    model.addAttribute("editItem", orderItem);
+    List<Product> product = productRepo.findAll();
+    model.addAttribute("products", product);
+    return "editItem";
+}
         orderItemService.editItem(id, orderItem);
 
         return "redirect:/orderList";
@@ -132,8 +130,15 @@ public class OrderController {
     @PostMapping("/createdOrder/{id}/addItem/")
     public String addItem(@PathVariable Long id,
                           @ModelAttribute(name = "orderItem") OrderItem orderItem,
-                          @ModelAttribute(name = "product") Long productId) {
-
+                          @ModelAttribute(name = "product") Long productId,
+                          Model model) {
+        if (!positionService.quantityIsEnough(orderItem.getProduct().getId(), orderItem.getQuantity())) {
+            model.addAttribute("quantityError", true);
+            model.addAttribute("editItem", orderItem);
+            List<Product> product = productRepo.findAll();
+            model.addAttribute("products", product);
+            return "addItem";
+        }
         orderSevice.addItem(orderItem, id);
         return "redirect:/createdOrder/" + id;
     }

@@ -15,7 +15,8 @@ table{
 
 
 .btn{
-    margin: 4%;
+    margin-top: 1px;
+    margin-bottom: 1px;
 }
 .employee{
     text-align: center;
@@ -80,13 +81,11 @@ h1 {
 a {
     font-weight: 300;
     color: #fff;
-    border-bottom: 1.5px solid #5581d4;
     text-decoration: none;
 }
 a:hover {
     font-weight: 300;
     color: #fff;
-    border-bottom: 2px solid #fff;
     text-decoration: none;
 }
 /* change to alternating star opacities */

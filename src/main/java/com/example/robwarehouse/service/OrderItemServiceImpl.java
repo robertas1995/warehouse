@@ -57,12 +57,14 @@ public class OrderItemServiceImpl implements OrderItemService {
         editItem.setQuantity(orderItem.getQuantity());
         editItem.setProduct(orderItem.getProduct());
         editItem.setPrice(orderItem.getProduct().getPrice() * orderItem.getQuantity());
-        orderItemRepo.save(editItem);
         orderService.updateOrderTotalPrice(orderItem.getOrderId(), order);
-        positionService.recalculatePositionsForProduct(product.getId(), orderItem.getQuantity());
+        positionService.recalculatePositionsForProduct(editItem.getProduct().getId(), editItem.getQuantity());
+        orderItemRepo.save(editItem);
 
         return editItem.getId();
     }
+
+
 
 
 }
