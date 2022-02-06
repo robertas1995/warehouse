@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+q<!DOCTYPE html>
 <html lang="en"
       xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
@@ -11,7 +11,7 @@
 <div class="container">
 
     <div class="linkName">
-        <h2>Create new employee</h2>
+        <h2 th:text="#{createNewEmployee}"></h2>
     </div>
 
 <form action="#"
@@ -21,26 +21,26 @@
     <div>
         <label>
 
-            <input type="text" th:field="*{name}" placeholder="Name"/>
+            <input type="text" th:field="*{name}" th:placeholder="#{name}"/>
         </label>
     </div>
     <div>
         <label>
 
-            <input type="text" th:field="*{surname}" placeholder="Surname"/>
+            <input type="text" th:field="*{surname}" th:placeholder="#{lastName}"/>
         </label>
     </div>
     <div>
         <label>
 
-            <input type="text" th:field="*{address}" placeholder="Address"/>
+            <input type="text" th:field="*{address}" th:placeholder="#{address}"/>
         </label>
     </div>
 
     <div>
         <label>
 
-            <input type="text" th:field="*{username}" placeholder="Username"/>
+            <input type="text" th:field="*{username}" th:placeholder="#{username}"/>
         </label>
     </div>
     <div>
@@ -50,7 +50,7 @@
         </label>
     </div>
     <div>
-        <button class="green-btn" type="submit">Register</button>
+        <button class="green-btn" type="submit" th:text="#{register}"></button>
     </div>
 </form>
 </div>

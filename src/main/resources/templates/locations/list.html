@@ -12,16 +12,16 @@
 <div class="container">
 
     <div class="linkName">
-        <h2>Location list</h2>
+        <h2 th:text="#{locationList}"></h2>
     </div>
-    <a href="/locations/create" class="btn btn-success"> <i class="fa fa-arrow-circle-o-left"></i>New Location</a>
+    <a href="/locations/create" class="btn btn-success" th:text="#{newLocation}"> <i class="fa fa-arrow-circle-o-left"></i></a>
 
     <table>
         <thead>
         <tr>
             <th class="tbody_th">  ID</th>
-            <th class="tbody_th">  Name</th>
-            <th class="tbody_th" colspan="3"> Action </th>
+            <th class="tbody_th" th:text="#{nickname}">  </th>
+            <th class="tbody_th" colspan="3" th:text="#{action}"></th>
 
         </tr>
         </thead>
@@ -29,9 +29,9 @@
         <tr th:each="location : ${objects}">
             <td class="tbody_td"><span th:text="${location.id}"> ID</span> </td>
             <td class="tbody_td"><span th:text="${location.locationName}">Name</span></td>
-            <td class="tbody_td"><a th:href="@{'/locations/delete/{id}'(id=${location.id})}" class="btn btn-danger">Delete</a></td>
-            <td class="tbody_td"><a th:href="@{'/locations/edit/{id}'(id=${location.id})}" class="btn btn-primary">Edit</a></td>
-            <td class="tbody_td"><a th:href="@{'/locations/{id}'(id=${location.id})}" class="btn btn-success"> View</a> </td>
+            <td class="tbody_td"><a th:href="@{'/locations/delete/{id}'(id=${location.id})}" class="btn btn-danger" th:text="#{delete}"></a></td>
+            <td class="tbody_td"><a th:href="@{'/locations/edit/{id}'(id=${location.id})}" class="btn btn-primary" th:text="#{edit}"></a></td>
+            <td class="tbody_td"><a th:href="@{'/locations/{id}'(id=${location.id})}" class="btn btn-success" th:text="#{view}"></a> </td>
         </tr>
         </tbody>
     </table>

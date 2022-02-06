@@ -12,7 +12,7 @@
 <div class="container" >
 
     <div class="linkName">
-        <h2>Employee</h2>
+        <h2 th:text="#{employeeView}"></h2>
     </div>
 
     <div class="employee">
@@ -21,8 +21,8 @@
         <p th:text="${object.username}">Phone</p>
         <p th:text="${object.role}">Email</p>
 
-        <a th:href="@{'/employees/edit/{id}'(id=${object.id})}" class="btn btn-primary">Edit</a>
-        <a th:href="@{'/employees/list'}" class="btn btn-success">Employee list</a>
+        <a th:href="@{'/employees/edit/{id}'(id=${object.id})}" class="btn btn-primary" th:text="#{edit}"></a>
+        <a th:href="@{'/employees/list'}" class="btn btn-success" th:text="#{employeeList}"></a>
     </div>
 </div>
 <footer th:replace="/fragments/footer :: footer"></footer>

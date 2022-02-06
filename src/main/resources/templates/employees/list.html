@@ -12,20 +12,20 @@
 <div class="container">
 
     <div class="linkName">
-        <h2>Employee list</h2>
+        <h2 th:text="#{employeeList}"></h2>
     </div>
-    <a href="/employees/create" class="btn btn-success"> <i class="fa fa-arrow-circle-o-left"></i>New employee</a>
+    <a href="/employees/create" class="btn btn-success" th:text="#{createNewEmployee}"> <i class="fa fa-arrow-circle-o-left"></i></a>
 
     <table>
         <thead>
         <tr>
             <th class="tbody_th">  ID</th>
-            <th class="tbody_th">  Name</th>
-            <th class="tbody_th"> Lastname </th>
-            <th class="tbody_th"> Address </th>
-            <th class="tbody_th"> Username </th>
+            <th class="tbody_th" th:text="#{name}"></th>
+            <th class="tbody_th" th:text="#{lastName}"></th>
+            <th class="tbody_th" th:text="#{address}"></th>
+            <th class="tbody_th" th:text="#{username}"></th>
             <th class="tbody_th"> Role </th>
-            <th class="tbody_th" colspan="3">  Action</th>
+            <th class="tbody_th" colspan="3" th:text="#{action}"></th>
         </tr>
         </thead>
         <tbody>
@@ -36,13 +36,13 @@
             <td class="tbody_td"><span th:text="${employees.address}">Address</span></td>
             <td class="tbody_td"><span th:text="${employees.username}">Email</span></td>
             <td class="tbody_td"><span th:text="${employees.role}">Phone</span></td>
-            <td class="tbody_td"><a th:href="@{'/employees/delete/{id}'(id=${employees.id})}" class="btn btn-danger">Delete</a></td>
-            <td class="tbody_td"><a th:href="@{'/employees/edit/{id}'(id=${employees.id})}" class="btn btn-primary">Edit</a></td>
-            <td class="tbody_td"><a th:href="@{'/employees/{id}'(id=${employees.id})}" class="btn btn-primary">View</a></td>
+            <td class="tbody_td"><a th:href="@{'/employees/delete/{id}'(id=${employees.id})}" class="btn btn-danger" th:text="#{delete}"></a></td>
+            <td class="tbody_td"><a th:href="@{'/employees/edit/{id}'(id=${employees.id})}" class="btn btn-primary" th:text="#{edit}"></a></td>
+            <td class="tbody_td"><a th:href="@{'/employees/{id}'(id=${employees.id})}" class="btn btn-primary" th:text="#{view}"></a></td>
         </tr>
         </tbody>
     </table>
 </div>
 <footer th:replace="/fragments/footer :: footer"></footer>
 </body>
-</html>>
+</html>

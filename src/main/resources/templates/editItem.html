@@ -13,13 +13,13 @@
     <form th:action="'/editItem/'+${id} "
           method="post">
         <div class="linkName">
-            <h2>Edit Item</h2>
+            <h2 th:text="#{editItem}"></h2>
         </div>
 
 
         <div class="form-group blu-margin">
             <select class="form-control" th:field="${editItem.product}" id="locations">
-                <option value="0">select operator</option>
+                <option value="0" th:text="#{selectProduct}"></option>
                 <option th:each="product : ${products}"
                         th:value="${product.id}"
                         th:text="${product.name}+' '+${product.price}"></option>
@@ -29,12 +29,12 @@
         <input type="hidden" th:field="*{editItem.orderId}">
         <div>
             <label>
-                <div class="alert-danger" th:if="${quantityError}"> Not enough quantity in storage </div>
-                <input type="number" th:field="*{editItem.quantity}" placeholder="Quantity"/>
+                <div class="alert-danger" th:if="${quantityError}" th:text="#{quantityError}"></div>
+                <input type="number" th:field="*{editItem.quantity}" th:placeholder="#{quantity}"/>
             </label>
         </div>
         <div >
-            <button class="btn btn-primary" type="submit">Confirm</button>
+            <button class="btn btn-primary" type="submit" th:text="#{confirm}"></button>
         </div>
     </form>
 </div>

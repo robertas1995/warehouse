@@ -124,7 +124,7 @@ if (!positionService.quantityIsEnough(orderItem.getProduct().getId(), orderItem.
 }
         orderItemService.editItem(id, orderItem);
 
-        return "redirect:/orderList";
+        return "redirect:/createdOrder/" + orderItem.getOrderId();
     }
 
     @PostMapping("/createdOrder/{id}/addItem/")

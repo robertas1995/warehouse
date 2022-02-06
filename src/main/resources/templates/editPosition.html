@@ -12,13 +12,13 @@
 
 <div class="container">
     <div class="linkName">
-        <h2>Edit Position</h2>
+        <h2 th:text="#{editPosition}"></h2>
     </div>
     <form th:action="'/positions/editPosition/'+${id}"
           method="post">
         <div class="form-group blu-margin">
             <select class="form-control" th:field="${editPosition.location.id}"  id="locations">
-                <option value="0">select operator</option>
+                <option value="0" th:text="#{select}"></option>
                 <option th:each="location : ${locations}"
                         th:value="${location.id}"
                         th:text="${location.locationName}"></option>
@@ -26,7 +26,7 @@
         </div>
         <div class="form-group blu-margin">
             <select class="form-control" th:field="${editPosition.product.id}"  id="positions">
-                <option value="0">select operator</option>
+                <option value="0" th:text="#{select}"></option>
                 <option th:each="product : ${products}"
                         th:value="${product.id}"
                         th:text="${product.name}"></option>
@@ -35,11 +35,11 @@
         <div>
             <label>
 
-                <input type="number" th:field="*{editPosition.quantity}" name="quantity" placeholder="Quantity"/>
+                <input type="number" th:field="*{editPosition.quantity}" name="quantity" th:placeholder="#{quantity}"/>
             </label>
         </div>
         <div>
-            <button type="submit">Confirm</button>
+            <button type="submit" th:text="#{confirm}"></button>
         </div>
     </form>
 </div>

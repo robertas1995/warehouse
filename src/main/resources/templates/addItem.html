@@ -5,7 +5,6 @@
 <head>
     <link rel="stylesheet" type="text/css" th:href="@{/css/main.css}">
     <meta charset="UTF-8">
-    <title>Add Items</title>
     <div th:replace="/fragments/header :: header"></div>
 
 </head>
@@ -14,13 +13,13 @@
     <form th:action="'/createdOrder/'+${id}+'/addItem/' "
           method="post">
         <div class="linkName">
-            <h2>Add item to order</h2>
+            <h2 th:text="#{addItemToOrder}"></h2>
         </div>
 
 
        <div class="form-group blu-margin">
             <select class="form-control" th:field="${orderItem.product}" id="locations">
-                <option value="0">select product</option>
+                <option value="0" th:text="#{selectProduct}"></option>
                 <option th:each="product : ${products}"
                         th:value="${product.id}"
                         th:text="${product.name}+' '+${product.price}"></option>
@@ -31,13 +30,13 @@
         <div>
             <label>
 
-                <div class="alert-danger" th:if="${quantityError}"> Not enough quantity in storage </div>
-                <input type="number" th:field="*{orderItem.quantity}" placeholder="Quantity"/>
+                <div class="alert-danger" th:if="${quantityError}" th:text="#{quantityError}"></div>
+                <input type="number" th:field="*{orderItem.quantity}" th:placeholder="#{quantity}"/>
             </label>
         </div>
 
         <div>
-            <button class="btn btn-primary" type="submit">Confirm</button>
+            <button class="btn btn-primary" type="submit" th:text="#{confirm}"></button>
         </div>
     </form>
 </div>

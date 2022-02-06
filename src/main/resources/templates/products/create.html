@@ -9,28 +9,28 @@
 
 <div class="container">
     <div class="linkName">
-        <h2>Create product</h2>
+        <h2 th:text="#{createProduct}"></h2>
     </div>
     <form th:action="@{'/products/create'}"
           th:object="${newObject}"
           method="post">
         <div>
             <label>
-                <input type="text" th:field="*{name}" placeholder="product Name"/>
+                <input type="text" th:field="*{name}" th:placeholder="#{nickname}"/>
             </label>
         </div>
         <div>
             <label>
-                <input type="number" th:field="*{price}" placeholder="Price"/>
+                <input type="number" th:field="*{price}" th:placeholder="#{price}"/>
             </label>
         </div>
         <div>
             <label>
-                <textarea th:field="*{description}" placeholder="About Goods"></textarea>
+                <textarea th:field="*{description}" th:placeholder="#{description}"></textarea>
             </label>
         </div>
         <div>
-            <button type="submit">Confirm</button>
+            <button type="submit" th:text="#{confirm}"></button>
         </div>
     </form>
 </div>

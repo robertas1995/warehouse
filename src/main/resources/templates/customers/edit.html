@@ -12,7 +12,7 @@
 
 <div class="container">
 <div class="linkName">
-    <h2>Edit Customer</h2>
+    <h2 th:text="#{editCustomer}"></h2>
 </div>
 
     <form th:action="'/customers/edit/'+${id}"
@@ -20,31 +20,37 @@
           method="post">
         <div>
             <label>
-                <input  th:field="*{name}" placeholder="customer name"/>
+
+                <input type="text" th:field="*{name}" th:placeholder="#{name}"/>
             </label>
         </div>
         <div>
             <label>
-                <input  th:field="*{lastname}"  placeholder="customer lastname"/>
+
+                <input type="text" th:field="*{address}" th:placeholder="#{address}"/>
             </label>
         </div>
         <div>
             <label>
-                <input  th:field="*{address}"  placeholder="customer address"/>
+
+                <input type="text" th:field="*{email}" th:placeholder="#{email}"/>
+            </label>
+        </div>
+
+        <div>
+            <label>
+
+                <input type="text" th:field="*{tel}" th:placeholder="#{phone}"/>
             </label>
         </div>
         <div>
             <label>
-                <input  th:field="*{email}"  placeholder="customer email"/>
+
+                <input type="text" th:field="*{lastname}" th:placeholder="#{lastName}"/>
             </label>
         </div>
         <div>
-            <label>
-                <input  th:field="*{tel}"  placeholder="customer Tel"/>
-            </label>
-        </div>
-        <div>
-            <button type="submit">Confirm</button>
+            <button type="submit" th:text="#{confirm}"></button>
         </div>
     </form>
 </div>

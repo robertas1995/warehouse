@@ -12,29 +12,29 @@
 
 <div class="container">
     <div class="linkName">
-        <h2>Edit employee</h2>
+        <h2 th:text="#{editEmployee}"></h2>
     </div>
     <form th:action="'/employees/edit/'+${id}"
           th:object="${editObject}"
           method="post">
         <div>
             <label>
-                <input  th:field="*{name}"  placeholder=" name"/>
+                <input  th:field="*{name}"  th:placeholder="#{name}"/>
             </label>
         </div>
         <div>
             <label>
-                <input  th:field="*{surname}"  placeholder=" lastname"/>
+                <input  th:field="*{surname}"  th:placeholder="#{lastName}"/>
             </label>
         </div>
         <div>
             <label>
-                <input  th:field="*{address}"  placeholder=" address"/>
+                <input  th:field="*{address}"  th:placeholder="#{lastName}"/>
             </label>
         </div>
         <div>
             <label>
-                <input  th:field="*{username}"  placeholder=" email"/>
+                <input  th:field="*{username}"  th:placeholder="#{username}"/>
             </label>
         </div>
         <div>
@@ -43,7 +43,7 @@
             </label>
         </div>
         <div>
-            <button type="submit">Confirm</button>
+            <button type="submit" th:text="#{confirm}"></button>
         </div>
     </form>
 </div>

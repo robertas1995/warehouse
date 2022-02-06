@@ -10,17 +10,17 @@
 
 <div class="container">
     <div class="linkName">
-        <h2>Edit location</h2>
+        <h2 th:text="#{editLocation}"></h2>
     </div>
     <form th:action="'/locations/edit/'+${id}"
           method="post">
         <div>
             <label title="location Name">
-                <input  th:value="*{editObject.getLocationName()}" name="locationName" placeholder="Location name"/>
+                <input  th:value="*{editObject.getLocationName()}" name="locationName" th:placeholder="#{locationName}"/>
             </label>
         </div>
         <div>
-            <button type="submit">Confirm</button>
+            <button type="submit" th:text="#{confirm}"></button>
         </div>
     </form>
 </div>

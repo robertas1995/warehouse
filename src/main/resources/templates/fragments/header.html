@@ -1,10 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html >
 <head>
     <meta charset="UTF-8">
     <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
+    <link th:rel="stylesheet" th:href="@{assets/bootstrap-slider/css/bootstrap-slider.css}"/>
 </head>
 <body>
+
 <header th:fragment="header">
     <nav th:fragment="navbar" class="navbar navbar-expand-md bg-dark navbar-dark">
         <div class="container-fluid">
@@ -13,21 +15,38 @@
             </div>
             <ul class="nav navbar-nav">
 
-                <li><a class="nav-link" th:href="@{/customers/list}">Customer</a></li>
+                <li><a class="nav-link" th:href="@{/customers/list}" th:text="#{customer}"></a></li>
 
-                <li><a class="nav-link" th:href="@{/positions/positionList}">Position List</a></li>
+                <li><a class="nav-link" th:href="@{/positions/positionList}" th:text="#{position}"></a></li>
 
-                <li><a class="nav-link" th:href="@{/orderList}">Order</a></li>
+                <li><a class="nav-link" th:href="@{/orderList}" th:text="#{order}"></a></li>
 
-                <li><a class="nav-link" th:href="@{/products/list}">Products</a></li>
+                <li><a class="nav-link" th:href="@{/products/list}" th:text="#{products}"></a></li>
 
-                <li><a class="nav-link" th:href="@{/employees/list}">Employee</a></li>
+                <li><a class="nav-link" th:href="@{/employees/list}" th:text="#{employee}"></a></li>
 
-                <li><a class="nav-link" th:href="@{/locations/list}"> Location</a> </li>
+                <li><a class="nav-link" th:href="@{/locations/list}" th:text="#{location}"></a> </li>
+
+<!--                <li class="nav-item dropdown">-->
+<!--                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"-->
+<!--                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"-->
+<!--                       th:text="${#strings.toUpperCase(#locale)}">-->
+<!--                    </a>-->
+<!--                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">-->
+<!--                        <a class="dropdown-item" th:href="@{/(lang=en)}">English</a>-->
+<!--                        <a class="dropdown-item" th:href="@{/(lang=lt)}">Spanish</a>-->
+<!--                    </div>-->
+<!--                </li>-->
+
             </ul>
+
         </div>
+
     </nav>
 </header>
 
+<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+<script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
 </body>
 </html>

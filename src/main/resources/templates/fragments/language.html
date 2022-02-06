@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div th:fragment="languages">
+    <!--  <form id="langForm" action="" method="get">-->
+    <!--    <select name="lang" id="lang" class="styled" onchange="this.form.submit();">-->
+    <!--      <option value="pl">PL</option>-->
+    <!--      <option value="en">EN</option>-->
+    <!--    </select>-->
+    <!--  </form>-->
+
+    <ul class="navbar-nav">
+        <!-- Icon dropdown -->
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle"
+               href="#"
+               id="navbarDropdown"
+               role="button"
+               data-mdb-toggle="dropdown"
+               aria-expanded="false">
+                <i class="fa fa-language" aria-hidden="true"></i>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                <li><hr class="dropdown-divider" /></li>
+                <li>
+                    <a class="dropdown-item" href="?lang=lt"><i class="lithuania flag"></i>Lietuvių</a>
+                </li>
+                <li>
+                    <a class="dropdown-item" href="?lang=us"><i class="united kingdom flag"></i>English</a>
+                </li>
+            </ul>
+        </li>
+    </ul>
+</div>
+
+</body>
+</html>

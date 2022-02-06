@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>CustomerList</title>
     <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
     <link rel="stylesheet" type="text/css" th:href="@{/css/main.css}">
@@ -14,10 +14,10 @@
 <div class="container">
 
     <div class="linkName">
-        <h2>Customer list</h2>
+        <h2 th:text="#{customerList}"></h2>
     </div>
 
-<a href="/customers/create" class="btn btn-success"> <i class="fa fa-arrow-circle-o-left"></i>New customer</a>
+<a href="/customers/create" class="btn btn-success"> <i class="fa fa-arrow-circle-o-left" th:text="#{createNewCustomer}"></i></a>
 
 
 
@@ -25,12 +25,12 @@
     <thead>
     <tr>
         <th class="tbody_th">  ID</th>
-        <th class="tbody_th">  Name</th>
-        <th class="tbody_th"> Lastname </th>
-        <th class="tbody_th"> Address </th>
-        <th class="tbody_th"> Email </th>
-        <th class="tbody_th">Phone </th>
-        <th class="tbody_th" colspan="3"> Action</th>
+        <th class="tbody_th" th:text="#{name}"></th>
+        <th class="tbody_th" th:text="#{lastName}">  </th>
+        <th class="tbody_th" th:text="#{address}"></th>
+        <th class="tbody_th" th:text="#{email}"></th>
+        <th class="tbody_th" th:text="#{phone}"></th>
+        <th class="tbody_th" colspan="3" th:text="#{action}"> </th>
 
     </tr>
     </thead>
@@ -42,9 +42,9 @@
         <td class="tbody_td"><span th:text="${customers.address}">Address</span></td>
         <td class="tbody_td"><span th:text="${customers.email}">Email</span></td>
         <td class="tbody_td"><span th:text="${customers.tel}">Phone</span></td>
-        <td class="tbody_td"><a th:href="@{'/customers/delete/{id}'(id=${customers.id})}" class="btn btn-danger">Delete</a></td>
-        <td class="tbody_td"><a th:href="@{'/customers/edit/{id}'(id=${customers.id})}" class="btn btn-primary">Edit</a></td>
-        <td class="tbody_td"><a th:href="@{'/customers/{id}'(id=${customers.id})}" class="btn btn-primary">View</a></td>
+        <td class="tbody_td"><a th:href="@{'/customers/delete/{id}'(id=${customers.id})}" class="btn btn-danger" th:text="#{delete}"></a></td>
+        <td class="tbody_td"><a th:href="@{'/customers/edit/{id}'(id=${customers.id})}" class="btn btn-primary" th:text="#{edit}"></a></td>
+        <td class="tbody_td"><a th:href="@{'/customers/{id}'(id=${customers.id})}" class="btn btn-primary" th:text="#{view}"></a></td>
     </tr>
     </tbody>
 </table>

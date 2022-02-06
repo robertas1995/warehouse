@@ -10,28 +10,28 @@
 
 <div class="container">
     <div class="linkName">
-        <h2>Edit product</h2>
+        <h2 th:text="#{editProduct}"></h2>
     </div>
     <form th:action="'/products/edit/'+${id}"
           th:object="${editObject}"
           method="post">
         <div>
             <label>
-                <input  th:field="*{name}" placeholder="product Name"/>
+                <input  th:field="*{name}" th:placeholder="#{nickname}"/>
             </label>
         </div>
         <div>
             <label>
-                <input  th:field="*{price}"  placeholder="Price"/>
+                <input  th:field="*{price}"  th:placeholder="#{price}"/>
             </label>
         </div>
         <div>
             <label>
-                <input th:field="*{description}"  placeholder="About Goods"/>
+                <input th:field="*{description}"  th:placeholder="#{description}"/>
             </label>
         </div>
         <div>
-            <button type="submit">Confirm</button>
+            <button type="submit" th:text="#{confirm}"></button>
         </div>
     </form>
 </div>

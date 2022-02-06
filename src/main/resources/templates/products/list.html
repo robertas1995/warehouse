@@ -13,16 +13,16 @@
     <div class="linkName">
         <h2>Product list</h2>
     </div>
-    <a href="/products/create" class="btn btn-success"> <i class="fa fa-arrow-circle-o-left"></i>New product</a>
+    <a href="/products/create" class="btn btn-success" th:text="#{createProduct}"> <i class="fa fa-arrow-circle-o-left"></i></a>
 
 <table>
     <thead>
     <tr>
         <th class="tbody_th">  ID</th>
-        <th class="tbody_th">  Name</th>
-        <th class="tbody_th"> Price </th>
-        <th class="tbody_th"> Description </th>
-        <th class="tbody_th" colspan="3"> Action </th>
+        <th class="tbody_th" th:text="#{nickname}"></th>
+        <th class="tbody_th" th:text="#{price}"></th>
+        <th class="tbody_th" th:text="#{description}"></th>
+        <th class="tbody_th" colspan="3" th:text="#{action}"></th>
     </tr>
     </thead>
     <tbody>
@@ -31,9 +31,9 @@
         <td class="tbody_td"><span th:text="${products.name}">Name</span></td>
         <td class="tbody_td"><span th:text="${products.price}">Price</span></td>
         <td class="tbody_td"><span th:text="${products.description}">About</span></td>
-        <td class="tbody_td"><a th:href="@{'/products/delete/{id}'(id=${products.id})}" class="btn btn-danger">Delete</a></td>
-        <td class="tbody_td"><a th:href="@{'/products/edit/{id}'(id=${products.id})}" class="btn btn-primary">Edit</a></td>
-        <td class="tbody_td"><a th:href="@{'/products/{id}'(id=${products.id})}" class="btn btn-primary">View</a></td>
+        <td class="tbody_td"><a th:href="@{'/products/delete/{id}'(id=${products.id})}" class="btn btn-danger" th:text="#{delete}"></a></td>
+        <td class="tbody_td"><a th:href="@{'/products/edit/{id}'(id=${products.id})}" class="btn btn-primary" th:text="#{edit}"></a></td>
+        <td class="tbody_td"><a th:href="@{'/products/{id}'(id=${products.id})}" class="btn btn-primary" th:text="#{view}"></a></td>
     </tr>
     </tbody>
 </table>

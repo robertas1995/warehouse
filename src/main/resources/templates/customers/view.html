@@ -12,16 +12,16 @@
 
 <div class="container" style="text-align: center">
     <div class="linkName">
-        <h2>Customer</h2>
+        <h2 th:text="#{customerView}"></h2>
     </div>
     <div class="customer">
-        <h2 th:text="${object.name}+' '+${object.lastname}">Name</h2>
-        <p th:text="${object.address}">Address</p>
-        <p th:text="${object.tel}">Phone</p>
-        <p th:text="${object.email}">Email</p>
+        <h2 th:text="${object.name}+' '+${object.lastname}"></h2>
+        <p th:text="${object.address}"></p>
+        <p th:text="${object.tel}"></p>
+        <p th:text="${object.email}"></p>
 
-        <a th:href="@{'/customers/edit/{id}'(id=${object.id})}" class="btn btn-primary">Edit</a>
-        <a th:href="@{'/customers/list'}" class="btn btn-success">Customer list</a>
+        <a th:href="@{'/customers/edit/{id}'(id=${object.id})}" class="btn btn-primary" th:text="#{edit}"></a>
+        <a th:href="@{'/customers/list'}" class="btn btn-success" th:text="#{customerList}"></a>
 
 
     </div>

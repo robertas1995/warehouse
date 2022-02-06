@@ -11,7 +11,7 @@
 <div class="container">
 
     <div class="linkName">
-        <h2>Create new client</h2>
+        <h2 th:text="#{createNewCustomer}"></h2>
     </div>
 
     <form action="#"
@@ -21,36 +21,36 @@
         <div>
             <label>
 
-                <input type="text" th:field="*{name}" placeholder="Name"/>
+                <input type="text" th:field="*{name}" th:placeholder="#{name}"/>
             </label>
         </div>
         <div>
             <label>
 
-                <input type="text" th:field="*{address}" placeholder="Address"/>
+                <input type="text" th:field="*{address}" th:placeholder="#{address}"/>
             </label>
         </div>
         <div>
             <label>
 
-                <input type="text" th:field="*{email}" placeholder="Email"/>
+                <input type="text" th:field="*{email}" th:placeholder="#{email}"/>
             </label>
         </div>
 
         <div>
             <label>
 
-                <input type="text" th:field="*{tel}" placeholder="Phone"/>
+                <input type="text" th:field="*{tel}" th:placeholder="#{phone}"/>
             </label>
         </div>
         <div>
             <label>
 
-                <input type="text" th:field="*{lastname}" placeholder="Last Name"/>
+                <input type="text" th:field="*{lastname}" th:placeholder="#{lastName}"/>
             </label>
         </div>
         <div>
-            <button class="green-btn" type="submit">Register</button>
+            <button class="green-btn" type="submit" th:text="#{register}"></button>
         </div>
     </form>
 </div>

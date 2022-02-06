@@ -9,18 +9,18 @@
 
 <div class="container">
     <div class="linkName">
-        <h2>Create location</h2>
+        <h2 th:text="#{createLocation}"></h2>
     </div>
     <form th:action="@{'/locations/create'}"
           th:object="${newObject}"
           method="post">
         <div>
             <label>
-                <input type="text" th:field="*{locationName}" placeholder="location Name"/>
+                <input type="text" th:field="*{locationName}" th:placeholder="#{locationName}"/>
             </label>
         </div>
         <div>
-            <button type="submit">Confirm</button>
+            <button type="submit" th:text="#{confirm}"></button>
         </div>
     </form>
 </div>

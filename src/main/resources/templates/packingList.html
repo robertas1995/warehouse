@@ -10,15 +10,15 @@
 <body>
 <div class="container">
     <div class="linkName">
-        <h2>Packing List</h2>
+        <h2 th:text="#{packingList}"></h2>
     </div>
 <table>
     <thead>
     <tr>
 
-        <th class="tbody_th"> OrderId</th>
-        <th class="tbody_th"> Employee name</th>
-        <th class="tbody_th"> Employee lastname</th>
+        <th class="tbody_th" th:text="#{orderId}"></th>
+        <th class="tbody_th" th:text="#{employeeName}"></th>
+        <th class="tbody_th" th:text="#{employeeLastname}"></th>
 
     </tr>
     </thead>
@@ -34,14 +34,14 @@
 <table>
     <thead>
     <tr>
-        <th class="tbody_th"> Product name</th>
-        <th class="tbody_th"> Quantity</th>
+        <th class="tbody_th" th:text="#{productName}"></th>
+        <th class="tbody_th" th:text="#{quantity}"></th>
 
     </tr>
     </thead>
     <tbody>
     <tr th:each="orderItem : ${items}">
-        <td class="tbody_td"><span th:text="${orderItem.product.name}"> Product Price</span></td>
+        <td class="tbody_td"><span th:text="${orderItem.product.name}"> Product name</span></td>
         <td class="tbody_td"><span th:text="${orderItem.quantity}"> Product Price</span></td>
     </tr>
     </tbody>

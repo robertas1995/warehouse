@@ -15,13 +15,13 @@
       method="post">
 
     <div class="linkName">
-        <h2>Edit order</h2>
+        <h2 th:text="#{editOrder}"></h2>
     </div>
 
 
     <div class="form-group blu-margin" >
         <select class="form-control" th:field="${editOrder.customer.id}"  id="customers">
-            <option value="0">select Customer</option>
+            <option value="0" th:text="#{selectCustomer}"></option>
             <option th:each="customer : ${customers}"
                     th:value="${customer.id}"
                     th:text="${customer.name}+' '+${customer.lastname}"></option>
@@ -29,7 +29,7 @@
     </div>
     <div class="form-group blu-margin" >
         <select class="form-control" th:field="${editOrder.employee.id}" id="employeeOrder" name="employees">
-            <option value="">Select Employee</option>
+            <option value="" th:text="#{selectEmployee}"></option>
             <option th:each="employee : ${employees}"
                     th:value="${employee.id}"
                     th:text="${employee.name}+'  '+${employee.surname}"></option>
@@ -46,7 +46,7 @@
     </div>
 
         <div>
-            <button class="btn btn-primary" type="submit">Change status</button>
+            <button class="btn btn-primary" type="submit" th:text="#{changeStatus}"></button>
         </div>
 
 

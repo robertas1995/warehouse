@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>new order</title>
     <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
     <link rel="stylesheet" type="text/css" th:href="@{/css/main.css}">
     <div th:replace="/fragments/header :: header"></div>
@@ -17,13 +16,13 @@
       method="post">
 
     <div class="linkName">
-        <h2>Create new order</h2>
+        <h2 th:text="#{createNewOrder}"></h2>
     </div>
 
 
 <div class="form-group blu-margin" >
     <select class="form-control" th:field="${order.customer.id}"  id="customers">
-        <option value="0">select Customer</option>
+        <option value="0" th:text="#{selectCustomer}"></option>
         <option th:each="customer : ${customers}"
                 th:value="${customer.id}"
                 th:text="${customer.name}+' '+${customer.lastname}"></option>
@@ -31,14 +30,14 @@
 </div>
 <div class="form-group blu-margin" >
     <select class="form-control" th:field="${order.employee.id}" id="employeeOrder" name="employees">
-        <option value="">Select Employee</option>
+        <option value="" th:text="#{selectEmployee}"></option>
         <option th:each="employee : ${employees}"
                 th:value="${employee.id}"
                 th:text="${employee.name}+'  '+${employee.surname}"></option>
     </select>
 </div>
         <div>
-            <button class="btn btn-success" type="submit">Create</button>
+            <button class="btn btn-success" type="submit" th:text="#{confirm}"></button>
         </div>
 
 </form>
