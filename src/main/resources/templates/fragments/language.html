@@ -3,16 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link th:rel="stylesheet" th:href="@{assets/bootstrap-select-1.13.9/dist/css/bootstrap-select.css}"/>
+    <link th:rel="stylesheet" th:href="@{webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
 </head>
 <body>
 <div th:fragment="languages">
-    <!--  <form id="langForm" action="" method="get">-->
-    <!--    <select name="lang" id="lang" class="styled" onchange="this.form.submit();">-->
-    <!--      <option value="pl">PL</option>-->
-    <!--      <option value="en">EN</option>-->
-    <!--    </select>-->
-    <!--  </form>-->
-
     <ul class="navbar-nav">
         <!-- Icon dropdown -->
         <li class="nav-item dropdown">
@@ -36,6 +31,11 @@
         </li>
     </ul>
 </div>
+
+<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+<script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+<script th:src="@{assets/bootstrap-select-1.13.9/dist/js/bootstrap-select.js}"></script>
 
 </body>
 </html>

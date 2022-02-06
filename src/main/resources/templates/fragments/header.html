@@ -2,8 +2,9 @@
 <html >
 <head>
     <meta charset="UTF-8">
-    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
-    <link th:rel="stylesheet" th:href="@{assets/bootstrap-slider/css/bootstrap-slider.css}"/>
+    <link th:rel="stylesheet" th:href="@{assets/bootstrap-select-1.13.9/dist/css/bootstrap-select.css}"/>
+    <link th:rel="stylesheet" th:href="@{webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
+    <link th:rel="stylesheet" th:href="@{/mdbootstrap.com/docs/standard/content-styles/flags/}"/>
 </head>
 <body>
 
@@ -27,16 +28,9 @@
 
                 <li><a class="nav-link" th:href="@{/locations/list}" th:text="#{location}"></a> </li>
 
-<!--                <li class="nav-item dropdown">-->
-<!--                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"-->
-<!--                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"-->
-<!--                       th:text="${#strings.toUpperCase(#locale)}">-->
-<!--                    </a>-->
-<!--                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">-->
-<!--                        <a class="dropdown-item" th:href="@{/(lang=en)}">English</a>-->
-<!--                        <a class="dropdown-item" th:href="@{/(lang=lt)}">Spanish</a>-->
-<!--                    </div>-->
-<!--                </li>-->
+                <li> <a class="nav-link" href="?lang=lt"><i class="lithuania flag"></i>LT</a> </li>
+
+                <li> <a class="nav-link" href="?lang=us"><i class="united kingdom flag"></i>EN</a> </li>
 
             </ul>
 
@@ -48,5 +42,6 @@
 <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
 <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
 <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+<script th:src="@{assets/bootstrap-select-1.13.9/dist/js/bootstrap-select.js}"></script>
 </body>
 </html>
