@@ -12,4 +12,6 @@ public interface OrderRepo extends JpaRepository<Order, Long> {
     List<Order> findAllByCustomerIdOrderByCreationDateDesc(Long customerId);
 
     List<Order> findAllByEmployeeId(Long id);
+
+    Long countByEmployeeId(Long id);
 }

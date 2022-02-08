@@ -15,7 +15,7 @@
     </div>
     <a href="/products/create" class="btn btn-success" th:text="#{createProduct}"> <i class="fa fa-arrow-circle-o-left"></i></a>
 
-<table>
+<table class="w-100 mt-3 text-center mx-auto">
     <thead>
     <tr>
         <th class="tbody_th">  ID</th>
@@ -31,9 +31,7 @@
         <td class="tbody_td"><span th:text="${products.name}">Name</span></td>
         <td class="tbody_td"><span th:text="${products.price}">Price</span></td>
         <td class="tbody_td"><span th:text="${products.description}">About</span></td>
-        <td class="tbody_td"><a th:href="@{'/products/delete/{id}'(id=${products.id})}" class="btn btn-danger" th:text="#{delete}"></a></td>
-        <td class="tbody_td"><a th:href="@{'/products/edit/{id}'(id=${products.id})}" class="btn btn-primary" th:text="#{edit}"></a></td>
-        <td class="tbody_td"><a th:href="@{'/products/{id}'(id=${products.id})}" class="btn btn-primary" th:text="#{view}"></a></td>
+        <td class="tbody_td col col-4"><a th:href="@{'/products/delete/{id}'(id=${products.id})}" class="btn btn-danger" th:text="#{delete}"></a><a th:href="@{'/products/{id}'(id=${products.id})}" class="btn btn-primary" th:text="#{view}"></a><a th:href="@{'/products/edit/{id}'(id=${products.id})}" class="btn btn-primary" th:text="#{edit}"></a></td>
     </tr>
     </tbody>
 </table>

@@ -21,4 +21,6 @@ public interface EmployeeService extends CrudService<Employee> {
     Collection<Employee> getAll();
 
     void delete(Long id);
+
+
 }

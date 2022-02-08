@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Statistics</title>
+    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/main.css}">
+    <div th:replace="/fragments/header :: header"></div>
+</head>
+<body>
+
+
+
+    <div class="container">
+
+
+    <table class="w-100 mt-3 text-center mx-auto">
+        <thead>
+        <tr>
+
+            <th class="tbody_th" th:text="#{employeeName}"></th>
+            <th class="tbody_th" th:text="#{employeeLastname}"></th>
+            <th class="tbody_th" th:text="#{effective}"></th>
+
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="statsBody : ${statsBody}">
+            <td class="tbody_td"><span th:text="${statsBody.employee.name}"> ID</span></td>
+            <td class="tbody_td"><span th:text="${statsBody.employee.surname}"> ID</span></td>
+            <td class="tbody_td"><span th:text="${statsBody.orderCount}"> ID</span></td>
+
+        </tr>
+        </tbody>
+    </table>
+
+    </div>
+
+
+</body>
+</html>

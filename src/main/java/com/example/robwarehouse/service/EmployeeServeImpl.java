@@ -2,6 +2,7 @@ package com.example.robwarehouse.service;
 
 import com.example.robwarehouse.model.Employee;
 import com.example.robwarehouse.repository.EmployeeRepo;
+import com.example.robwarehouse.repository.OrderRepo;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +14,7 @@ import java.util.Collection;
 public class EmployeeServeImpl implements EmployeeService {
 
     private final EmployeeRepo employeeRepo;
+    private final OrderRepo orderRepo;
 
     @Override
     public Employee get(Long id) {
@@ -35,7 +37,7 @@ public class EmployeeServeImpl implements EmployeeService {
 
     @Override
     public void update(Employee update) {
-        var editedEmployee = employeeRepo.findById(update.getId()).orElseThrow(() -> new EntityNotFoundException("emplyee not found"));
+        var editedEmployee = employeeRepo.findById(update.getId()).orElseThrow(() -> new EntityNotFoundException("employee not found"));
         editedEmployee.setName(editedEmployee.getName());
         editedEmployee.setSurname(editedEmployee.getSurname());
         editedEmployee.setAddress(editedEmployee.getAddress());
@@ -53,6 +55,7 @@ public class EmployeeServeImpl implements EmployeeService {
     public void delete(Long id) {
         employeeRepo.deleteById(id);
     }
+
 
 
 }

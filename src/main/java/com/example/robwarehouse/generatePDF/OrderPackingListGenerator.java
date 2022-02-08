@@ -1,6 +1,7 @@
 package com.example.robwarehouse.generatePDF;
 
 import com.example.robwarehouse.model.OrderItem;
+import com.example.robwarehouse.repository.OrderItemRepo;
 import com.lowagie.text.Font;
 import com.lowagie.text.*;
 import com.lowagie.text.pdf.PdfPCell;
@@ -14,11 +15,8 @@ import java.util.List;
 
 public class OrderPackingListGenerator {
     private List<OrderItem> packinglist;
+    OrderItemRepo orderItemRepo;
 
-
-    public OrderPackingListGenerator(List<OrderItem> list){
-        this.packinglist = list;
-    }
 
     private void writeTableHeader(PdfPTable table){
         PdfPCell cell = new PdfPCell();

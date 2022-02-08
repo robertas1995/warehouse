@@ -24,4 +24,6 @@ public interface OrderSevice {
     Long editOrder(Long id, Order editOrder);
 
     Page<Order> getAllOrdersPageable(int pageNumber, int pageSize);
+
+    Long getCountByEmoloyeeId(Long id);
 }

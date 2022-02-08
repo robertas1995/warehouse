@@ -1,11 +1,7 @@
 table{
-    text-align: center;
     border-collapse: collapse;
     border-spacing: 4px;
-    margin-left: 15%;
-    margin-right: 15%;
-    margin-top: 5%;
-    width: 70%;
+
 
 }
 
@@ -17,6 +13,8 @@ table{
 .btn{
     margin-top: 1px;
     margin-bottom: 1px;
+    margin-left: 2px;
+    margin-right: 2px;
 }
 .employee{
     text-align: center;

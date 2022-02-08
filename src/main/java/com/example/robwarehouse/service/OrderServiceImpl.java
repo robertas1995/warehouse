@@ -113,6 +113,13 @@ public class OrderServiceImpl implements OrderSevice {
 
     }
 
+    @Override
+    public Long getCountByEmoloyeeId(Long id){ return orderRepo.countByEmployeeId(id);}
+
+
+
+
+
 }
 
 

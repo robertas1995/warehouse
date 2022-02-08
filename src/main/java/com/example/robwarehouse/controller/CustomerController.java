@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/customers")
 public class CustomerController extends AbstractCrudController<Customer> {
 
+
+
     private final CustomerService customerService;
 
     public CustomerController(CustomerService customerService) {

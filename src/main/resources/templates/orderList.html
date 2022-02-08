@@ -17,14 +17,14 @@
 
     <a href="createNewOrder" class="btn btn-success" th:text="#{createNewOrder}"> <i class="fa fa-arrow-circle-o-left"></i></a>
 
-    <table>
+    <table class="w-100 mt-3 text-center mx-auto">
         <thead>
         <tr>
             <th class="tbody_th">  ID</th>
             <th class="tbody_th" th:text="#{creationDate}">  </th>
             <th class="tbody_th" th:text="#{status}"></th>
             <th class="tbody_th" th:text="#{price}"></th>
-            <th class="tbody_th" colspan="2" th:text="#{action}"></th>
+            <th class="tbody_th" th:text="#{action}"></th>
 
         </tr>
         </thead>
@@ -34,8 +34,8 @@
             <td class="tbody_td"><span th:text="${order.creationDate}">creattion Date</span></td>
             <td class="tbody_td"><span th:text="${order.status}">Status</span></td>
             <td class="tbody_td"><span th:text="${order.totalPrice}">Price</span></td>
-            <td class="tbody_td"><a th:href="@{'/deleteOrder/{id}'(id=${order.id})}" class="btn btn-danger" th:text="#{delete}"></a></td>
-            <td class="tbody_td"><a th:href="@{'/createdOrder/{id}'(id=${order.id})}" class="btn btn-primary" th:text="#{edit}"></a></td>
+            <td class="tbody_td col col-3"><a th:href="@{'/deleteOrder/{id}'(id=${order.id})}" class="btn btn-danger" th:text="#{delete}"></a><a th:href="@{'/createdOrder/{id}'(id=${order.id})}" class="btn btn-primary" th:text="#{edit}"></a></td>
+
         </tr>
         </tbody>
     </table>
